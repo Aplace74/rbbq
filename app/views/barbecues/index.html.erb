@@ -21,10 +21,9 @@
       <div class="card-trip-infos">
         <div>
           <h2><%= b.name %></h2>
-          <p><%= b.description %></p>
         </div>
         <h2 class="card-trip-pricing"><%= b.price %> €</h2>
-        <%= cl_image_tag b.user.avatar, height: 300, width: 400, crop: :fill, class: "card-trip-user avatar-bordered" %>
+        <%= cl_image_tag b.user.avatar, height: 300, width: 400, crop: :fill, class: "card-trip-user avatar" %>
       </div>
     </div>
   <% end %>
