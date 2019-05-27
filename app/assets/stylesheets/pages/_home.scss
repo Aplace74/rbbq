@@ -11,13 +11,12 @@
   color: white;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
   font-size: 36px;
-  font-weight: bold;
 }
 
 .banner p {
   font-size: 18px;
   color: white;
-  opacity: .7;
+  opacity: .8;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
 }
 
@@ -50,6 +49,9 @@
   border-radius: 4px;
   background: white;
   transition: background 0.3s ease;
+  .cover {
+    object-fit: fill;
+  }
 }
 
 .btn-flat:hover {
