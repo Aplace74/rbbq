@@ -1,4 +1,9 @@
 class BarbecuesController < ApplicationController
+
+	def index
+		@barbecues = Barbecue.all
+	end
+	
 	def new
 		@user = User.find(params[:user_id])
 		@barbecue = Barbecue.new
@@ -15,5 +20,5 @@ class BarbecuesController < ApplicationController
 	def barbecue_params
 		params.require(:barbecue).permit(:content)
 	end
-	
+
 end
