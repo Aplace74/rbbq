@@ -1,21 +1,20 @@
-<div class="form">
-	<%= simple_form_for(@barbecue) do |f| %>
-		<% if @barbecue.errors.any? %>
-			<div class="errors-container">
-				<ul>
-					<% @barbecue.errors.full_messages.each do |message| %>
-						<li><%= message %></li>
-					<% end %>
-				</ul>
-			</div>
-		<% end %>
+<div class="d-flex align-items-center justify-content-center" style="height: 100vh">
+	<div class="form">
 		<%= simple_form_for [@user, @barbecue] do |f| %>
 			<%= f.input :name %>
 			<%= f.input :description, as: :text %>
 			<%= f.input :address %>
-			<%= f.input :model, collection: BARBECUE::TYPES %>
-
-			<%= f.submit "add a review", class: "btn btn-primary" %>
+			<%= f.input :model %>
+			<div class="input-group">
+				<%= f.input :price, as: :float %>
+				<div class="input-group-append">
+					<span class="input-group-text">€</span>
+				</div>
+			</div>
+      <%= f.input :types, collection: Barbecue::TYPES %>
+      <%= f.input :capacity, as: :integer %>
+      <%= f.input :rating, collection: (0..5) %>
+			<%= f.submit "add a barbecue", class: "btn btn-primary" %>
 		<% end %>
-	<% end %>
+	</div>
 </div>

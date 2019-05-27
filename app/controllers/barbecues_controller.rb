@@ -13,7 +13,7 @@ class BarbecuesController < ApplicationController
 		@barbecue = Barbecue.new(barbecue_params)
 		@barbecue.user = User.find(params[:user_id])
 		if @barbecue.save
-      redirect_to barbecue_path(@barbecue)
+      redirect_to user_barbecue_path(@barbecue)
     else
       render :new
     end
