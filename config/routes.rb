@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     collection do
       get 'dashboard'
     end
+    resources :barbecues do
+      resources :bookings, except: [:show, :index]
+    end
   end
 
-  resources :barbecues do
-    resources :bookings, except: [:show, :index]
-  end
 end
