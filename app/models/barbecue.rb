@@ -6,4 +6,5 @@ class Barbecue < ApplicationRecord
   has_many :bookings
 
   validates :name, :model, :description, :price, :capacity, :types, presence: true
+  mount_uploader :pictures, PhotoUploader
 end

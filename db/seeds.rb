@@ -60,7 +60,7 @@ bbq1 = Barbecue.create!(
     rating: [0, 1, 2, 3, 4, 5].sample,
     user: users.sample
 )
-bbq1.pictures = "https://www.esprit-barbecue.fr/5446-thickbox_default/barbecue-charbon-mendy-alde-le-marquier.jpg"
+bbq1.remote_pictures_url = "https://www.esprit-barbecue.fr/5446-thickbox_default/barbecue-charbon-mendy-alde-le-marquier.jpg"
 bbq1.save
 
 end
