@@ -15,39 +15,18 @@
 
 <div class="cards">
 
-  <div class="card-trip">
-    <img src="https://res.cloudinary.com/dwptvy074/image/upload/v1558971540/bbq3_bhtm9n.jpg">
-    <div class="card-trip-infos">
-      <div>
-        <h2>BBQ 1</h2>
-        <p>Classic Barbecue</p>
+  <% @barbecues.each do |b| %>
+    <div class="card-trip">
+      <%= cl_image_tag b.pictures, height: 300, width: 400, crop: :fill %>
+      <div class="card-trip-infos">
+        <div>
+          <h2><%= b.name %></h2>
+          <p><%= b.description %></p>
+        </div>
+        <h2 class="card-trip-pricing"><%= b.price %> €</h2>
+        <%= cl_image_tag b.user.avatar, height: 300, width: 400, crop: :fill, class: "card-trip-user avatar-bordered" %>
       </div>
-      <h2 class="card-trip-pricing">20 €</h2>
-      <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-trip-user avatar-bordered"/>
     </div>
-  </div>
+  <% end %>
 
-  <div class="card-trip">
-    <img src="https://res.cloudinary.com/dwptvy074/image/upload/v1558971540/bbq2_nzbiir.jpg">
-    <div class="card-trip-infos">
-      <div>
-        <h2>BBQ 2</h2>
-        <p>Family Barbecue</p>
-      </div>
-      <h2 class="card-trip-pricing">30 €</h2>
-      <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-trip-user avatar-bordered"/>
-    </div>
-  </div>
-
-  <div class="card-trip">
-    <img src="https://res.cloudinary.com/dwptvy074/image/upload/v1558971540/bbq1_qbu9ax.jpg">
-    <div class="card-trip-infos">
-      <div>
-        <h2>BBQ 3</h2>
-        <p>Deluxe Barbecue</p>
-      </div>
-      <h2 class="card-trip-pricing">100 €</h2>
-      <img src='https://kitt.lewagon.com/placeholder/users/krokrob' class="card-trip-user avatar-bordered"/>
-    </div>
-  </div>
 </div>
