@@ -1,30 +1,27 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @barbecue.pictures%>');"><h1><%= @barbecue.name %></h1></div>
-
-<div class="container">
-  <div class="row my-4">
-    <div class="col-lg-4 p-0" >
-    <%= cl_image_tag @barbecue.pictures, class: "w-100" %>    
-    </div>
-
-    <div class="col-lg-8 p-4">
-    <p><strong>Type:</strong> <%= @barbecue.types.capitalize %></p>
-    <p><strong>Description:</strong> <%= @barbecue.description %></p>
-    <p><strong>Address:</strong> <%= @barbecue.address %></p>
-    <p><strong>Capacity</strong> number of persons: <%= @barbecue.capacity%></p>
-    <p><strong>Price / day:</strong> <%= @barbecue.price %> €</p>
-    <p>
-      <% if @barbecue.user == current_user %>
-        <%= link_to '<i class="fas fa-edit"></i> Edit'.html_safe, edit_barbecue_path, class: "btn btn-success" %> 
-        <%= link_to '<i class="fas fa-trash-alt"></i> Delete'.html_safe,  barbecue_path, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", method: :delete %>
-      <%end%>
-
-      <% if @barbecue.user != current_user %>
-       <%= link_to '<i class="far fa-calendar-alt"></i> Book'.html_safe, new_barbecue_booking_path(@barbecue), class: "btn btn-success" %>
-      <%end%>  
-    
-    </p>
-    </div>
-  </div>    
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @barbecue.pictures%>');">
+	<h1><%= @barbecue.name %></h1>
+	<h2><%= render 'shared/rating', barbecue: @barbecue %></h2>
 </div>
-
-
+<div class="container">
+	<div class="row my-4">
+		<div class="col-lg-4 p-0" >
+			<%= cl_image_tag @barbecue.pictures, class: "w-100" %>
+		</div>
+		<div class="col-lg-8 p-4">
+			<p><strong>Type:</strong> <%= @barbecue.types.capitalize %></p>
+			<p><strong>Description:</strong> <%= @barbecue.description %></p>
+			<p><strong>Address:</strong> <%= @barbecue.address %></p>
+			<p><strong>Capacity</strong> number of persons: <%= @barbecue.capacity%></p>
+			<p><strong>Price / day:</strong> <%= @barbecue.price %> €</p>
+			<p>
+				<% if @barbecue.user == current_user %>
+					<%= link_to '<i class="fas fa-edit"></i> Edit'.html_safe, edit_barbecue_path, class: "btn btn-success" %>
+					<%= link_to '<i class="fas fa-trash-alt"></i> Delete'.html_safe,  barbecue_path, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", method: :delete %>
+				<%end%>
+				<% if @barbecue.user != current_user %>
+					<%= link_to '<i class="far fa-calendar-alt"></i> Book'.html_safe, new_barbecue_booking_path(@barbecue), class: "btn btn-success" %>
+				<%end%>
+			</p>
+		</div>
+	</div>
+</div>
