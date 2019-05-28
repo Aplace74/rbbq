@@ -22,7 +22,7 @@
 				</div>
 			</div>
 			<h2 class="card-trip-pricing"><%= barbecue.price %>€</h2>
-			<%= cl_image_tag barbecue.user.avatar, height: 300, width: 400, crop: :fill, class: "card-trip-user avatar avatar-bordered" %>
+			<%= cl_image_tag barbecue.user.avatar, height: 400, width: 400, crop: :thumb, gravity: :face, class: "card-trip-user avatar avatar-bordered" %>
 		<% end %>
 	<% end %>
 </div>
