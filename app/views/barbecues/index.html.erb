@@ -19,12 +19,7 @@
 					<p class="badge badge-info"><%= barbecue.types %></p>
 					<p><i class="fas fa-user-friends"></i> <%= barbecue.capacity %>
 						<span class="separation"></span><span class="rating">
-							<% barbecue.rating.times do %>
-								<span class="fas fa-star text-warning"></span>
-							<% end %>
-							<% (5 - barbecue.rating).times do %>
-								<span class="far fa-star text-warning"></span>
-							<% end %>
+							<%= render 'shared/rating', barbecue: barbecue %>
 						</span>
 					</p>
 					<p><%= barbecue.description.truncate(170) %></p>
