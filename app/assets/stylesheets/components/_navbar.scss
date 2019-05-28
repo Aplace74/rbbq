@@ -1,7 +1,17 @@
 .navbar-lewagon {
   justify-content: space-between;
   background: white;
+  
 }
+
+.item-spaced {
+  margin: 0 20px;
+}
+
+.nav-item {
+  padding: 0 20px;
+}
+
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
@@ -9,8 +19,6 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
-  margin-left: 20px;  
-  margin-right: 20px;
 }
 
 
