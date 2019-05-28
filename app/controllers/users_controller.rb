@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def dashboard
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   def show

@@ -1,2 +1,21 @@
-<h1>Users#dashboard</h1>
-<p>Find me in app/views/users/dashboard.html.erb</p>
+<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+<span><%= cl_image_tag @user.avatar, height: 50, width: 50, crop: :fill, class: "rounded" %></span>
+<div class="dashboard">
+
+  <div class="my-bbqs">
+    <%= link_to 'new', new_barbecue_path %>
+    <% @user.barbecues.each do |b| %>
+      <div>
+        <h2><%= b.name %></h2>
+        <p><%= b.rating %>/5</p>
+        <span><%= link_to 'View', barbecue_path(b) %></span>
+        <span><%= link_to 'Edit', edit_barbecue_path(b) %></span>
+        <span><%= link_to 'Delete', barbecue_path(b), method: :delete, data: { confirm: "Are you sure?" } %></span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="my-bookings">
+  </div>
+
+</div>
