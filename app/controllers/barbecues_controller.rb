@@ -1,19 +1,23 @@
 class BarbecuesController < ApplicationController
-
+	skip_before_action :authenticate_user!, only: :index
+	
 	def index
 		@barbecues = Barbecue.all
 	end
 	
 	def new
-		@user = User.find(params[:user_id])
 		@barbecue = Barbecue.new
+	end
+
+	def show
 	end
 
 	def create
 		@barbecue = Barbecue.new(barbecue_params)
-		@barbecue.user = User.find(params[:user_id])
+		@barbecue.user = current_user
+		@barbecue.save!
 		if @barbecue.save
-      redirect_to user_barbecue_path(@barbecue)
+      redirect_to barbecue_path(@barbecue)
     else
       render :new
     end
@@ -23,7 +27,7 @@ class BarbecuesController < ApplicationController
 	private
 
 	def barbecue_params
-		params.require(:barbecue).permit(:content)
+		params.require(:barbecue).permit!
 	end
 
 end
