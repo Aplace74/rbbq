@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_27_135007) do
+ActiveRecord::Schema.define(version: 2019_05_28_145755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2019_05_27_135007) do
     t.datetime "updated_at", null: false
     t.integer "capacity"
     t.string "types"
-    t.integer "rating"
+    t.integer "rating", default: 0
     t.index ["user_id"], name: "index_barbecues_on_user_id"
   end
 
