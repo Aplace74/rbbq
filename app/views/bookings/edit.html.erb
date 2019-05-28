@@ -1,8 +1,8 @@
-<h1>Edit booking</h1>
 <div class="form">
+<h2 class="text-center">Edit booking</h2>
 	<%= simple_form_for [@barbecue, @booking] do |f| %>
 		<%= f.input :start_date %>
 		<%= f.input :end_date %>
-		<%= f.submit "Update booking", class: "btn btn-primary" %>
+		<%= f.submit "Update your Booking", class: "btn btn-success w-100 my-3" %>
 	<% end %>
 </div>

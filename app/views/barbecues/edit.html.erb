@@ -1,4 +1,5 @@
 <div class="form">
+<h2 class="text-center">Edit your Barbecue</h2>
   <%= simple_form_for [@user, @barbecue] do |f| %>
     <%= f.input :name %>
     <%= f.input :description, as: :text %>
@@ -7,9 +8,8 @@
     <%= f.input :price, as: :float %>
     <%= f.input :types, collection: Barbecue::TYPES %>
     <%= f.input :capacity, as: :integer %>
-    <%= f.input :rating, collection: (0..5) %>
     <div class ="align-button-center">
-      <%= f.submit "Edit barbecue", class: "btn btn-success" %>
+      <%= f.submit "Edit barbecue", class: "btn btn-success w-100 my-3" %>
     </div>
   <% end %>
 </div>

@@ -8,8 +8,8 @@
 
   <% if current_user == nil  %>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <%= link_to 'Log in', new_user_session_path, class: "btn btn-primary" %>
-      <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-outline-secondary mx-3" %>
+      <%= link_to 'Log in', new_user_session_path, class: "btn btn-success" %>
+      <%= link_to 'Sign up', new_user_registration_path, class: "btn btn-secondary mx-3" %>
     </div>
   <% else %>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
