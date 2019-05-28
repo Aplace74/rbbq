@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       get 'dashboard'
     end
   end
-
   resources :barbecues do
     resources :bookings, except: [:show, :index]
   end
+
 end
