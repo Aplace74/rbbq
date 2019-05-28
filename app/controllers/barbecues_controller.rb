@@ -3,14 +3,17 @@ class BarbecuesController < ApplicationController
 
   def index
     @barbecues = Barbecue.all
+    @title = "AirBBQ"
   end
 
 	def show
-		@barbecue = Barbecue.find(params[:id])
+    @barbecue = Barbecue.find(params[:id])
+    bbq_name_title
 	end
 
   def new
     @barbecue = Barbecue.new
+    @title = "Add your Barbecue"
   end
 
   def create
@@ -32,7 +35,8 @@ class BarbecuesController < ApplicationController
 	end
 	
 	def edit
-		@barbecue = Barbecue.find(params[:id])
+    @barbecue = Barbecue.find(params[:id])
+    bbq_name_title
 	end
 
 	def update
@@ -47,4 +51,9 @@ class BarbecuesController < ApplicationController
   def barbecue_params
     params.require(:barbecue).permit!
   end
+
+  def bbq_name_title
+    @title = @barbecue.name
+  end
+  
 end
