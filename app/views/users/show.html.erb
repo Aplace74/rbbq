@@ -1,28 +1,31 @@
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<span><%= cl_image_tag @user.avatar, height: 50, width: 50, crop: :fill, class: "rounded" %></span>
+<div class="container">
+  <h2><%= @user.first_name %> <%= @user.last_name %></h1>
+  <span><%= cl_image_tag @user.avatar, height: 50, width: 50, crop: :fill, class: "rounded" %></span>
 
-<p>has <%= @user.barbecues.count %> barbecues</p>
+  <p>has <%= @user.barbecues.count %> barbecues</p>
 
-<div class="cards">
-
-  <% @user.barbecues.each do |b| %>
-  <%= link_to barbecue_path(b), style: "color: gray" do %>
-    <div class="card-trip">
-      <div class="picture" style="background-image: url('<%= cl_image_path b.pictures, height: 300, width: 400, crop: :fill %>')"></div>
-      <div class="card-trip-infos align-center">
-        <div>
-          <h2><%= b.name %></h2>
-          <p><%= b.types %></p>
-          <p>number of person : <%= b.capacity %></p>
+  <div class="cards">
+    <% @user.barbecues.each do |b| %>
+    <%= link_to barbecue_path(b), style: "color: gray" do %>
+      <div class="card-trip">
+        <div class="picture" style="background-image: url('<%= cl_image_path b.pictures, height: 300, width: 400, crop: :fill %>')"></div>
+        <div class="card-trip-infos align-center">
+          <div>
+            <h2><%= b.name %></h2>
+            <p><%= b.types %></p>
+            <p>number of person : <%= b.capacity %></p>
+          </div>
+          <h2 class="card-trip-pricing"><%= b.price %>€</h2>
         </div>
-        <h2 class="card-trip-pricing"><%= b.price %>€</h2>
       </div>
-    </div>
-  <% end %>
-  <% end %>
-</div>
+    <% end %>
+    <% end %>
+  </div>
 
-<div class="contact">
-  <p>phone: <%= @user.phone %></p>
-  <p>email: <%= @user.email %></p>
+  <div class="contact">
+    <p>Phone: <%= @user.phone %></p>
+    <p>Email: <%= @user.email %></p>
+    <i class="far fa-edit"></i>
+          <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %>
+  </div>
 </div>
