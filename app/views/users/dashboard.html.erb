@@ -40,11 +40,19 @@
       <div class="part bookings">
         <h3>My Bookings</h3>
         <% @bookings.each do |booking| %>
+        <% if current_user.id == booking.barbecue.user_id %>
           <div class="booking">
             <span class="my-1"><strong><%= booking.user.first_name %> <%= booking.user.last_name %></strong></span>
             <span class="btn btn-outline-success"><i class="fas fa-check"> Accept</i></span>
             <span class="btn btn-outline-danger"><i class="fas fa-times"> Decline</i></span>
           </div>
+        <% else %>
+          <div class="booking">
+            <p>You booked a <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %> to <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.user.first_name %> <%= booking.barbecue.user.last_name %><% end %>.</p>
+            <p>From : <%= booking.start_date %></p>
+            <p>To : <%= booking.end_date %></p>
+          </div>
+        <% end %>
         <% end %>
       </div>
 
