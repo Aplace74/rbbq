@@ -8,19 +8,17 @@
           <h2><%= @user.first_name %> <%= @user.last_name %></h2>
           <%= cl_image_tag @user.avatar, crop: :fill, class: "avatar mx-3" %>
         </div>
-        <p><i class="fas fa-phone"> <%= current_user.phone %></i></p>
-        <p><i class="fas fa-envelope"> <%= current_user.email %></i></p>
+        <p><i class="fas fa-phone"></i> <%= current_user.phone %></p>
+        <p><i class="fas fa-envelope"></i> <%= current_user.email %></p>
         <i class="far fa-edit"></i>
         <%= link_to 'Edit Profile', edit_user_registration_path(current_user) %>
       </div>
-
     </div>
 
     <div class="col-12 col-lg-8">
 
       <div class="part bbqs">
         <h3>My Barbecues</h3>
-        <%= link_to '+ Add a barbecue', new_barbecue_path, class: "btn btn-secondary" %>
         <% @user.barbecues.each do |b| %>
         <%= link_to barbecue_path(b), style: "color: gray" do %>
           <div class="bbq my-3">
@@ -35,6 +33,7 @@
           </div>
         <% end %>
         <% end %>
+        <%= link_to '+ Add a barbecue', new_barbecue_path, class: "btn btn-secondary" %>
       </div>
 
       <div class="part bookings">
