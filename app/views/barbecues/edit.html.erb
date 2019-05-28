@@ -1,17 +1,15 @@
-<div class="container">
-
-  <div class="form">
-    <%= simple_form_for [@user, @barbecue] do |f| %>
-      <%= f.input :name %>
-      <%= f.input :description, as: :text %>
-      <%= f.input :address %>
-      <%= f.input :model %>
-      <%= f.input :price, as: :float %>
-      <%= f.input :types, collection: Barbecue::TYPES %>
-      <%= f.input :capacity, as: :integer %>
-      <%= f.input :rating, collection: (0..5) %>
-      <%= f.submit "Edit barbecue", class: "btn btn-primary" %>
-    <% end %>
-  </div>
-
+<div class="form">
+  <%= simple_form_for [@user, @barbecue] do |f| %>
+    <%= f.input :name %>
+    <%= f.input :description, as: :text %>
+    <%= f.input :address %>
+    <%= f.input :model %>
+    <%= f.input :price, as: :float %>
+    <%= f.input :types, collection: Barbecue::TYPES %>
+    <%= f.input :capacity, as: :integer %>
+    <%= f.input :rating, collection: (0..5) %>
+    <div class ="align-button-center">
+      <%= f.submit "Edit barbecue", class: "btn btn-success" %>
+    </div>
+  <% end %>
 </div>
