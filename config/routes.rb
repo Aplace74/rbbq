@@ -7,8 +7,8 @@ Rails.application.routes.draw do
       get 'dashboard'
     end
   end
-  resources :barbecues do
-    resources :bookings, except: [:show, :index]
+  resources :barbecues do 
+    resources :bookings, except: [:show, :index, :destroy]
   end
-
+  delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
 end
