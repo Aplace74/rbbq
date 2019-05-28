@@ -1,2 +1,28 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+<span><%= cl_image_tag @user.avatar, height: 50, width: 50, crop: :fill, class: "rounded" %></span>
+
+<p>has <%= @user.barbecues.count %> barbecues</p>
+
+<div class="cards">
+
+  <% @user.barbecues.each do |b| %>
+  <%= link_to barbecue_path(b), style: "color: gray" do %>
+    <div class="card-trip">
+      <div class="picture" style="background-image: url('<%= cl_image_path b.pictures, height: 300, width: 400, crop: :fill %>')"></div>
+      <div class="card-trip-infos align-center">
+        <div>
+          <h2><%= b.name %></h2>
+          <p><%= b.types %></p>
+          <p>number of person : <%= b.capacity %></p>
+        </div>
+        <h2 class="card-trip-pricing"><%= b.price %>€</h2>
+      </div>
+    </div>
+  <% end %>
+  <% end %>
+</div>
+
+<div class="contact">
+  <p>phone: <%= @user.phone %></p>
+  <p>email: <%= @user.email %></p>
+</div>

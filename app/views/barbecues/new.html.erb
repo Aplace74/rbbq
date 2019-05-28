@@ -8,6 +8,8 @@
 		<%= f.input :types, collection: Barbecue::TYPES %>
 		<%= f.input :capacity, as: :integer %>
 		<%= f.input :rating, collection: (0..5) %>
-		<%= f.submit "add a barbecue", class: "btn btn-primary" %>
+	<div class ="align-button-center">
+		<%= f.submit "Add a barbecue", class: "btn btn-success w-100 my-3" %>
+	</div>	
 	<% end %>
 </div>
