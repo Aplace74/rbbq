@@ -5,11 +5,12 @@ class BarbecuesController < ApplicationController
     @barbecues = Barbecue.all
   end
 
+	def show
+		@barbecue = Barbecue.find(params[:id])
+	end
+
   def new
     @barbecue = Barbecue.new
-  end
-
-  def show
   end
 
   def create
