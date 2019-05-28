@@ -29,5 +29,4 @@ class BarbecuesController < ApplicationController
 	def barbecue_params
 		params.require(:barbecue).permit!
 	end
-
 end
