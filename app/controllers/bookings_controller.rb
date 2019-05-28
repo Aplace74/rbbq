@@ -3,6 +3,7 @@ class BookingsController < ApplicationController
     def new
         @barbecue = Barbecue.find(params[:barbecue_id])
         @booking = Booking.new
+        @title = "Book for #{@barbecue.name}"
     end
 
     def create
@@ -20,6 +21,7 @@ class BookingsController < ApplicationController
     def edit
         @barbecue = Barbecue.find(params[:barbecue_id])
         @booking = Booking.find(params[:id])
+        title = "Edit for #{barbecue.name} "
     end
 
     def update
