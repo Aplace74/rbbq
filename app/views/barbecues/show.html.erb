@@ -9,9 +9,9 @@
 		</div>
 		<div class="col-lg-8 p-4">
 			<p><strong>Type:</strong> <%= @barbecue.types.capitalize %></p>
-			<p><strong>Description:</strong> <%= @barbecue.description %></p>
-			<p><strong>Address:</strong> <%= @barbecue.address %></p>
-			<p><strong>Capacity</strong> number of persons: <%= @barbecue.capacity%></p>
+			<p><strong><i class="fas fa-clipboard-list"></i></strong> <%= @barbecue.description %></p>
+			<p><strong><i class="fas fa-map-marker-alt"></i></strong> <%= @barbecue.address %></p>
+			<p><strong><i class="fas fa-user-friends"></i></strong> <%= @barbecue.capacity%></p>
 			<p><strong>Price / day:</strong> <%= @barbecue.price %> €</p>
 			<p>
 				<% if @barbecue.user == current_user %>
