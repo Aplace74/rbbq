@@ -10,37 +10,41 @@ chris = User.create!(
     first_name: "Christophe",
     last_name: "Lepretre",
     phone: "01 23 45 67 89",
-    avatar: "https://ca.slack-edge.com/T02NE0241-UHJNRSJ2X-8033519bd289-48",
     email: "chris@gmail.com",
     password: "123456"
 )
+chris.remote_avatar_url = "https://ca.slack-edge.com/T02NE0241-UHJNRSJ2X-8033519bd289-48"
+chris.save
 
 max = User.create!(
     first_name: "Maxime",
     last_name: "Derouet",
     phone: "01 23 45 67 89",
-    avatar: "https://ca.slack-edge.com/T02NE0241-UHJNDRP50-4cbef4975b23-48",
     email: "max@gmail.com",
     password: "123456"
 )
+max.remote_avatar_url = "https://ca.slack-edge.com/T02NE0241-UHJNDRP50-4cbef4975b23-48"
+max.save
 
 aym = User.create!(
     first_name: "Aymeric",
     last_name: "Dhalluin",
     phone: "01 23 45 67 89",
-    avatar: "https://ca.slack-edge.com/T02NE0241-UHVHHPMT6-070fc749feb5-48",
     email: "aym@gmail.com",
     password: "123456"
 )
+aym.remote_avatar_url = "https://ca.slack-edge.com/T02NE0241-UHVHHPMT6-070fc749feb5-48"
+aym.save
 
 anto = User.create!(
     first_name: "Antoine",
     last_name: "Place",
     phone: "01 23 45 67 89",
-    avatar: "https://ca.slack-edge.com/T02NE0241-UHW3LLS4V-bbfea18ca08e-48",
     email: "anto@gmail.com",
     password: "123456"
 )
+anto.remote_avatar_url = "https://ca.slack-edge.com/T02NE0241-UHW3LLS4V-bbfea18ca08e-48"
+anto.save
 
 users = [chris, aym, anto, max]
 
@@ -91,6 +95,64 @@ bbq3 = Barbecue.create!(
 bbq3.remote_pictures_url = "https://www.esprit-barbecue.fr/1751-thickbox_default/barbecue-weber-gaz-q3200.jpg"
 bbq3.save
 
+bbq4 = Barbecue.create!(
+    name: "Grill électrique Mythic Double Krampouz",
+    model: "Krampouz",
+    address: Faker::Address.full_address,
+    description: "Le barbecue électrique MYTHIC double vous permet de maîtriser avec précision la cuisson de deux aliments à des températures différentes. Le MYTHIC est un parfait mélange d'élégance et de praticité, qui feront votre bonheur en terme de cuisine d'extérieure ! ",
+    price: rand(30..40),
+    free: true,
+    capacity: "12",
+    types: "electric",
+    rating: [0, 1, 2, 3, 4, 5].sample,
+    user: users.sample
+)
+bbq4.remote_pictures_url = "https://www.esprit-barbecue.fr/6009-thickbox_default/gril-electrique-mythic-double-krampouz.jpg"
+bbq4.save
 
+bbq5 = Barbecue.create!(
+    name: "Plancha gaz Eno Oceane 50 avec chariot",
+    model: "Eno",
+    address: Faker::Address.full_address,
+    description: "Fabriquée en France et d’excellente qualité, cette plancha vous permettra de réaliser de délicieuses grillades très facilement pour 4 à 6 personnes.",
+    price: rand(20..30),
+    free: true,
+    capacity: "6",
+    types: "gas",
+    rating: [0, 1, 2, 3, 4, 5].sample,
+    user: users.sample
+)
+bbq5.remote_pictures_url = "https://www.esprit-barbecue.fr/8097-thickbox_default/plancha-gaz-oceane-50-eno.jpg"
+bbq5.save
+
+bbq6 = Barbecue.create!(
+    name: "Plancha électrique Design 1800W",
+    model: "Krampounz",
+    address: Faker::Address.full_address,
+    description: "Voici la plancha électrique Design 1800W, 100% inox procurant ainsi un très grand confort de cuisson.",
+    price: rand(20..30),
+    free: true,
+    capacity: "6",
+    types: "electric",
+    rating: [0, 1, 2, 3, 4, 5].sample,
+    user: users.sample
+)
+bbq6.remote_pictures_url = "https://www.esprit-barbecue.fr/5761-thickbox_default/plancha-elec-design-1800w-krampouz.jpg"
+bbq6.save
+
+bbq7 = Barbecue.create!(
+    name: "Barbecue charbon Tonino 1",
+    model: "Esprit Barbecue",
+    address: Faker::Address.full_address,
+    description: "Le barbecue idéal pour vos repas en famille ou entre amis. Sa large surface de cuisson (2 grilles + une plancha en fonte émaillée) vous permet de convier jusqu'à 10 personnes.",
+    price: rand(20..30),
+    free: true,
+    capacity: "8",
+    types: "coal",
+    rating: [0, 1, 2, 3, 4, 5].sample,
+    user: users.sample
+)
+bbq7.remote_pictures_url = "https://www.esprit-barbecue.fr/7456-thickbox_default/barbecue-tonino-1-charbon-acier.jpg"
+bbq7.save
 
 puts "seed finished !"
