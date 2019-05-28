@@ -29,7 +29,18 @@ class BarbecuesController < ApplicationController
     @barbecue = Barbecue.find(params[:id])
     @barbecue.destroy
     redirect_to dashboard_users_path
-  end
+	end
+	
+	def edit
+		@barbecue = Barbecue.find(params[:id])
+	end
+
+	def update
+		@barbecue = Barbecue.find(params[:id])
+		@barbecue.user = current_user
+		@barbecue.update(barbecue_params)
+		redirect_to barbecue_path(@barbecue)
+	end
 
   private
 
