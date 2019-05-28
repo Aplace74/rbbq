@@ -10,6 +10,7 @@ class BarbecuesController < ApplicationController
 	end
 
 	def show
+		@barbecue = Barbecue.find(params[:id])
 	end
 
 	def create
