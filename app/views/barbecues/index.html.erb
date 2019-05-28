@@ -16,7 +16,7 @@
 <div class="cards">
 
   <% @barbecues.each do |b| %>
-  <%= link_to 'barbecue_path(b)', style: "color: gray" do %>
+  <%= link_to barbecue_path(b), style: "color: gray" do %>
     <div class="card-trip">
       <div class="picture" style="background-image: url('<%= cl_image_path b.pictures, height: 300, width: 400, crop: :fill %>')"></div>
       <div class="card-trip-infos align-center">
