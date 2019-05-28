@@ -20,7 +20,7 @@
 
       <div class="part bbqs">
         <h3>My Barbecues</h3>
-        <%= link_to '+ Add a barbecue', new_barbecue_path, class: "btn btn-outline-secondary" %>
+        <%= link_to '+ Add a barbecue', new_barbecue_path, class: "btn btn-secondary" %>
         <% @user.barbecues.each do |b| %>
         <%= link_to barbecue_path(b), style: "color: gray" do %>
           <div class="bbq my-3">
@@ -42,15 +42,18 @@
         <% @bookings.each do |booking| %>
         <% if current_user.id == booking.barbecue.user_id %>
           <div class="booking">
-            <span class="my-1"><strong><%= booking.user.first_name %> <%= booking.user.last_name %></strong></span>
-            <span class="btn btn-outline-success"><i class="fas fa-check"> Accept</i></span>
-            <span class="btn btn-outline-danger"><i class="fas fa-times"> Decline</i></span>
+            <span class="my-3"><strong><%= booking.user.first_name %> <%= booking.user.last_name %></strong></span>
+            <span class="mx-3 btn btn-success"><i class="fas fa-check"> Accept</i></span>
+            <span class="mx-1"><%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-secondary" do %>
+                  <i class="fas fa-times"> Decline</i><% end %></span>
           </div>
         <% else %>
           <div class="booking">
-            <p>You booked a <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %> to <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.user.first_name %> <%= booking.barbecue.user.last_name %><% end %>.</p>
+            <p>You booked a <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %> to <%= link_to user_path(booking.barbecue.user), style: "color: gray" do %><%= booking.barbecue.user.first_name %> <%= booking.barbecue.user.last_name %><% end %>.</p>
             <p>From : <%= booking.start_date %></p>
             <p>To : <%= booking.end_date %></p>
+            <p class="mx-1 text-right"><%= link_to booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %>
+                  <i class="fas fa-times"> Cancel</i><% end %></p>
           </div>
         <% end %>
         <% end %>
