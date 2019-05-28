@@ -49,15 +49,19 @@
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   width: 350px;
-  height: 350px;
+  height: 390px;
   margin: auto;
+  border-radius: 3px;
+  .infos {
+    position: absolute;
+  }
 }
 
-// .card-trip > img {
-//   height: 200px;
-//   width: 200px;
-//   object-fit: cover;
-// }
+.card-trip .picture {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
 
 .card-trip h2 {
   width: 275px;
@@ -78,11 +82,19 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  position: relative;
+  position: absolute;
+  width: 300px;
 }
 
 .card-trip-user {
   position: relative;
   right: -300px;
-  top: -125px;
+  top: -18px;
+}
+
+.card-trip-pricing {
+  position: relative;
+  left: 290px;
+  top: 150px;
+  
 }
