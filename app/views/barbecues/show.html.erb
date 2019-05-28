@@ -1,1 +1,12 @@
-<h1>HELLO WORD</h1>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @barbecue.pictures%>');">
+</div>
+
+<div class="container">
+  <h1><%= @barbecue.name %></h1>
+  <h2><%= @barbecue.types %></h2>
+  <p><%= @barbecue.description %></p>
+  <p><%= @barbecue.address %></p>
+  <p><%= @barbecue.price %> €</p>
+  <p>number of persons: <%= @barbecue.capacity%></p>
+  
+</div>
