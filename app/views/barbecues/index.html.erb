@@ -16,16 +16,19 @@
 <div class="cards">
 
   <% @barbecues.each do |b| %>
+  <%= link_to 'barbecue_path(b)', style: "color: gray" do %>
     <div class="card-trip">
-      <%= cl_image_tag b.pictures, height: 300, width: 400, crop: :fill %>
-      <div class="card-trip-infos">
+      <div class="picture" style="background-image: url('<%= cl_image_path b.pictures, height: 300, width: 400, crop: :fill %>')"></div>
+      <div class="card-trip-infos align-center">
         <div>
           <h2><%= b.name %></h2>
+          <p><%= b.types %></p>
+          <p>number of person : <%= b.capacity %></p>
         </div>
-        <h2 class="card-trip-pricing"><%= b.price %> €</h2>
-        <%= cl_image_tag b.user.avatar, height: 300, width: 400, crop: :fill, class: "card-trip-user avatar" %>
+        <h2 class="card-trip-pricing"><%= b.price %>€</h2>
       </div>
+      <%= cl_image_tag b.user.avatar, height: 300, width: 400, crop: :fill, class: "card-trip-user avatar" %>
     </div>
   <% end %>
-
+  <% end %>
 </div>
