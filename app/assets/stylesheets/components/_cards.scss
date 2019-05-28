@@ -85,6 +85,9 @@
   align-items: flex-end;
   position: absolute;
   width: 300px;
+  .rating {
+    margin-left: 10px;
+  }
 }
 
 .card-trip-user {
