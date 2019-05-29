@@ -15,6 +15,7 @@ class BarbecuesController < ApplicationController
       {
         lat: @barbecue.latitude,
         lng: @barbecue.longitude,
+        image_url: helpers.asset_url('logo.png')
       }
 	end
 
