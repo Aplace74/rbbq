@@ -9,24 +9,9 @@
 		</form>
 	</div>
 </div>
+
 <div class="cards">
 	<% @barbecues.each do |barbecue| %>
-		<%= link_to barbecue_path(barbecue), class: "card-trip text-decoration-none" do %>
-			<div class="picture" style="background-image: url('<%= cl_image_path barbecue.pictures, height: 300, width: 400 %>');"></div>
-			<div class="card-trip-infos">
-				<div>
-					<h2><%= barbecue.name %></h2>
-					<p class="badge badge-info"><%= barbecue.types %></p>
-					<p><i class="fas fa-user-friends"></i> <%= barbecue.capacity %>
-						<span class="separation"></span><span class="rating">
-							<%= render 'shared/rating', barbecue: barbecue %>
-						</span>
-					</p>
-					<p><%= barbecue.description.truncate(170) %></p>
-				</div>
-			</div>
-			<h2 class="card-trip-pricing"><%= barbecue.price %>€</h2>
-			<%= cl_image_tag barbecue.user.avatar, height: 400, width: 400, crop: :thumb, gravity: :face, class: "card-trip-user avatar avatar-bordered" %>
-		<% end %>
+		<%= render 'shared/card', barbecue: barbecue %>
 	<% end %>
 </div>

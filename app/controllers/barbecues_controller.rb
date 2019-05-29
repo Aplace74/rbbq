@@ -5,10 +5,16 @@ class BarbecuesController < ApplicationController
     @barbecues = Barbecue.all
     @title = "AirBBQ"
   end
-
+  
 	def show
     @barbecue = Barbecue.find(params[:id])
     bbq_name_title
+    @marker = []
+    @marker << 
+      {
+        lat: @barbecue.latitude,
+        lng: @barbecue.longitude,
+      }
 	end
 
   def new
