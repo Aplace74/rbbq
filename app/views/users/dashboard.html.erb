@@ -55,7 +55,8 @@
             <span class="mx-1"><%= link_to delete_booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-secondary" do %><i class="fas fa-times"></i> Decline<% end %></span>
           <% end %>
           </div>
-        <% else %>
+        <% end %>
+        <% if current_user == booking.user %>
           <div class="booking">
             <p>You booked a <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %> to <%= link_to user_path(booking.barbecue.user), style: "color: gray" do %><%= booking.barbecue.user.first_name %> <%= booking.barbecue.user.last_name %><% end %>.</p>
             <p>From : <%= booking.start_date %></p>
