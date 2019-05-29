@@ -8,8 +8,14 @@ class BarbecuesController < ApplicationController
     @barbecues = policy_scope(Barbecue)
     @title = "AirBBQ"
   end
-
+  
 	def show
+    @marker = []
+    @marker << 
+      {
+        lat: @barbecue.latitude,
+        lng: @barbecue.longitude,
+      }
 	end
 
   def new
