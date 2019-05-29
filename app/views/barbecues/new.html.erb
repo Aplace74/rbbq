@@ -11,7 +11,11 @@
 		<%= f.input :pictures %>
   		<%= f.input :pictures_cache, as: :hidden %>
 	<div class ="align-button-center">
-		<%= f.submit "Add a barbecue", class: "btn btn-success w-100 my-3" %>
+		<% if policy(Barbecue).create? %>
+			<%= f.submit class: "btn btn-success w-100 my-3" do %>
+				<%= link_to 'New barbecue', new_barbecue_path %>
+			<% end %>
+		<% end %>
 	</div>	
 	<% end %>
 </div>

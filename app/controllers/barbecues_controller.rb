@@ -1,15 +1,16 @@
 class BarbecuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show] 
+  before_action :set_barbecue, only: [:show, :edit, :update, :destroy]
+  before_action :bbq_name_title, only: [:show, :edit]
 
   def index
     @barbecues = Barbecue.all
+    @barbecues = policy_scope(Barbecue)
     @title = "AirBBQ"
   end
   
 	def show
-    @barbecue = Barbecue.find(params[:id])
     @booking = Booking.new
-    bbq_name_title
     @marker = []
     @marker << 
       {
@@ -21,11 +22,13 @@ class BarbecuesController < ApplicationController
 
   def new
     @barbecue = Barbecue.new
+    authorize @barbecue
     @title = "Add your Barbecue"
   end
 
   def create
     @barbecue = Barbecue.new(barbecue_params)
+    authorize @barbecue
     @barbecue.user = current_user
     @barbecue.save!
     if @barbecue.save
@@ -37,18 +40,14 @@ class BarbecuesController < ApplicationController
   end
 
   def destroy
-    @barbecue = Barbecue.find(params[:id])
     @barbecue.destroy
     redirect_to dashboard_users_path
 	end
 	
 	def edit
-    @barbecue = Barbecue.find(params[:id])
-    bbq_name_title
 	end
 
 	def update
-		@barbecue = Barbecue.find(params[:id])
 		@barbecue.user = current_user
     if @barbecue.update(barbecue_params)
       redirect_to barbecue_path(@barbecue)
@@ -61,6 +60,11 @@ class BarbecuesController < ApplicationController
 
   def barbecue_params
     params.require(:barbecue).permit!
+  end
+
+  def set_barbecue
+    @barbecue = Barbecue.find(params[:id])
+    authorize @barbecue
   end
 
   def bbq_name_title
