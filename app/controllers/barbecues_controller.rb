@@ -8,6 +8,7 @@ class BarbecuesController < ApplicationController
   
 	def show
     @barbecue = Barbecue.find(params[:id])
+    @booking = Booking.new
     bbq_name_title
     @marker = []
     @marker << 
