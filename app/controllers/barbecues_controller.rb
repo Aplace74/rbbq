@@ -16,6 +16,7 @@ class BarbecuesController < ApplicationController
       {
         lat: @barbecue.latitude,
         lng: @barbecue.longitude,
+        image_url: helpers.asset_url('logo.png')
       }
 	end
 
@@ -48,8 +49,11 @@ class BarbecuesController < ApplicationController
 
 	def update
 		@barbecue.user = current_user
-		@barbecue.update(barbecue_params)
-		redirect_to barbecue_path(@barbecue)
+    if @barbecue.update(barbecue_params)
+      redirect_to barbecue_path(@barbecue)
+    else
+      render :edit
+    end
 	end
 
   private

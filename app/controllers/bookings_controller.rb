@@ -29,7 +29,13 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     authorize @booking
     @booking.update(booking_params)
-    redirect_to dashboard_users_path(@user)
+
+    if @booking.update(booking_params)
+      redirect_to dashboard_users_path(@user)
+    else
+      render :edit
+    end
+
   end
 
   def destroy
