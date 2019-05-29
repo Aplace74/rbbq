@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_user!, only: :show
   def dashboard
     @user = current_user
     @bookings = Booking.where(@user.id == :user_id)
