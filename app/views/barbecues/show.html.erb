@@ -2,12 +2,17 @@
 	<h1><%= @barbecue.name %></h1>
 	<h2><%= render 'shared/rating', barbecue: @barbecue %></h2>
 </div>
+
 <div class="container">
 	<div class="row my-4">
+
 		<div class="col-lg-3 p-0" >
 			<%= cl_image_tag @barbecue.pictures, class: "w-100" %>
 		</div>
+
 		<div class="col-lg-5 p-4">
+			<% full_name = @barbecue.user.first_name + @barbecue.user.last_name %>
+			<p><%= cl_image_tag(@barbecue.user.avatar, crop: :fill, class: "avatar") %> <%= link_to full_name, user_path(@barbecue.user.id), class: "text-secondary" %></p>
 			<p><strong>Type:</strong> <%= @barbecue.types.capitalize %></p>
 			<p><strong><i class="fas fa-clipboard-list"></i></strong> <%= @barbecue.description %></p>
 			<p><strong><i class="fas fa-map-marker-alt"></i></strong> <%= @barbecue.address %></p>
@@ -18,12 +23,14 @@
 					<%= link_to '<i class="fas fa-edit"></i> Edit'.html_safe, edit_barbecue_path, class: "btn btn-success" %>
 					<%= link_to '<i class="fas fa-trash-alt"></i> Delete'.html_safe,  barbecue_path, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", method: :delete %>
 				<%end%>
-				<% if @barbecue.user != current_user %>
-					<%= link_to '<i class="far fa-calendar-alt"></i> Book'.html_safe, new_barbecue_booking_path(@barbecue), class: "btn btn-success" %>
-				<%end%>
 			</p>
 		</div>
-		<div class ="col-lg-4"
+
+		<div class="col-12 col-lg-4">
+			<%= render "bookings/new" %>
+		</div>
+
+		<div class ="col-lg-12"
         id="map"
         style="width: 100%;
         height: 400px;"
