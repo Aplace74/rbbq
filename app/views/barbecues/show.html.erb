@@ -27,15 +27,13 @@
 						<i class="fas fa-trash-alt"></i> Delete
 					<% end %>
 				<% end %>	
-				<% if @barbecue.user != current_user %>
-					<%= link_to '<i class="far fa-calendar-alt"></i> Book'.html_safe, new_barbecue_booking_path(@barbecue), class: "btn btn-success" %>
-				<%end%>
 			</p>
 		</div>
-
+		<% if @barbecue.user != current_user %>
 		<div class="col-12 col-lg-4">
 			<%= render "bookings/new" %>
 		</div>
+		<%end%>
 
 		<div class ="col-lg-12"
         id="map"
