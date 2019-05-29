@@ -1,8 +1,25 @@
-<div class="form">
+<div class="form p-4">
 <h2 class="text-center">New Booking</h2>
+	<div class="row my-4">
+		<div class="col-4 p-0" >
+		<%= cl_image_tag @barbecue.pictures, class: "w-100" %>    
+		</div>
+		<div class="col-8 p-4">
+			<p><strong>Name:</strong> <%= @barbecue.name %></p>
+			<p><strong>Description:</strong> <%= @barbecue.description %></p>
+			<p><strong>Type:</strong> <%= @barbecue.types %></p>
+			<p><strong>Address:</strong> <%= @barbecue.address %></p>
+			<p><strong>Capacity</strong> number of persons: <%= @barbecue.capacity%></p>
+			<p><strong>Price / day:</strong> <%= @barbecue.price %> €</p>
+		</div>
+	</div>
 	<%= simple_form_for [@barbecue, @booking] do |f| %>
 		<%= f.input :start_date %>
 		<%= f.input :end_date %>
+		<div class="form-group text-center pt-4">
+		<div class="bg-light text-dark p-2 font-weight-bold rounded d-inline">Price: <span id="price"></span></div>
+		</div>
+		<%= f.hidden_field :rentalprice, value: @barbecue.price %>
 		<%= f.submit "Book a Barbecue", class: "btn btn-success w-100 my-3" %>
 	<% end %>
 </div>

@@ -15,8 +15,6 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'application' %>
 
       <div class="footer">
         <div class="footer-links">
@@ -28,5 +26,7 @@
         Copyright © 2019 - AIRBBQ
       </div>
     </div>
+    <%= javascript_include_tag 'application' %>
+    <%= javascript_pack_tag 'application' %>
   </body>
 </html>
