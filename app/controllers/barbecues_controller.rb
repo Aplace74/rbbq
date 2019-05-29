@@ -49,8 +49,11 @@ class BarbecuesController < ApplicationController
 	def update
 		@barbecue = Barbecue.find(params[:id])
 		@barbecue.user = current_user
-		@barbecue.update(barbecue_params)
-		redirect_to barbecue_path(@barbecue)
+    if @barbecue.update(barbecue_params)
+      redirect_to barbecue_path(@barbecue)
+    else
+      render :edit
+    end
 	end
 
   private
