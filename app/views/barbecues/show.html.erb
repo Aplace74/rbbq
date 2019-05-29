@@ -4,10 +4,10 @@
 </div>
 <div class="container">
 	<div class="row my-4">
-		<div class="col-lg-4 p-0" >
+		<div class="col-lg-3 p-0" >
 			<%= cl_image_tag @barbecue.pictures, class: "w-100" %>
 		</div>
-		<div class="col-lg-8 p-4">
+		<div class="col-lg-5 p-4">
 			<p><strong>Type:</strong> <%= @barbecue.types.capitalize %></p>
 			<p><strong><i class="fas fa-clipboard-list"></i></strong> <%= @barbecue.description %></p>
 			<p><strong><i class="fas fa-map-marker-alt"></i></strong> <%= @barbecue.address %></p>
@@ -22,6 +22,13 @@
 					<%= link_to '<i class="far fa-calendar-alt"></i> Book'.html_safe, new_barbecue_booking_path(@barbecue), class: "btn btn-success" %>
 				<%end%>
 			</p>
+		</div>
+		<div class ="col-lg-4"
+        id="map"
+        style="width: 100%;
+        height: 400px;"
+        data-markers="<%= @marker.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 		</div>
 	</div>
 </div>

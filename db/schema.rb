@@ -28,6 +28,8 @@ ActiveRecord::Schema.define(version: 2019_05_29_082002) do
     t.integer "capacity"
     t.string "types"
     t.integer "rating", default: 0
+    t.float "latitude"
+    t.float "longitude"
     t.index ["user_id"], name: "index_barbecues_on_user_id"
   end
 
