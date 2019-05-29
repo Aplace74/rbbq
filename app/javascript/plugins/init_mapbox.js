@@ -2,6 +2,7 @@ import mapboxgl from 'mapbox-gl';
 
 const mapElement = document.getElementById('map');
 
+
 const buildMap = () => {
   mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
   return new mapboxgl.Map({
@@ -12,7 +13,13 @@ const buildMap = () => {
 
 const addMarkersToMap = (map, markers) => {
   markers.forEach((marker) => {
-    new mapboxgl.Marker()
+    const element = document.createElement('div');
+    element.className = 'marker';
+    element.style.backgroundImage = `url('${marker.image_url}')`;
+    element.style.backgroundSize = 'contain';
+    element.style.width = '40px';
+    element.style.height = '40px';
+    new mapboxgl.Marker(element)
       .setLngLat([ marker.lng, marker.lat ])
       .addTo(map);
   });
