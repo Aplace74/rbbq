@@ -14,10 +14,14 @@
 			<p><strong><i class="fas fa-user-friends"></i></strong> <%= @barbecue.capacity%></p>
 			<p><strong>Price / day:</strong> <%= @barbecue.price %> €</p>
 			<p>
-				<% if @barbecue.user == current_user %>
-					<%= link_to '<i class="fas fa-edit"></i> Edit'.html_safe, edit_barbecue_path, class: "btn btn-success" %>
-					<%= link_to '<i class="fas fa-trash-alt"></i> Delete'.html_safe,  barbecue_path, data: { confirm: 'Are you sure?' }, class: "btn btn-danger", method: :delete %>
-				<%end%>
+				<% if policy(@barbecue).edit? %>
+					<%= link_to edit_barbecue_path(@barbecue), class:"btn btn-success" do %>
+						<i class="fas fa-edit"></i> Update
+					<% end %>
+					<%= link_to barbecue_path, data: { confirm: 'Are you sure?' },class: "btn btn-danger", method: :delete do %>
+						<i class="fas fa-trash-alt"></i> Delete
+					<% end %>
+				<% end %>	
 				<% if @barbecue.user != current_user %>
 					<%= link_to '<i class="far fa-calendar-alt"></i> Book'.html_safe, new_barbecue_booking_path(@barbecue), class: "btn btn-success" %>
 				<%end%>
@@ -25,3 +29,4 @@
 		</div>
 	</div>
 </div>
+
