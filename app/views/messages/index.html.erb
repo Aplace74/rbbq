@@ -1,1 +1,21 @@
+<h1>Messages</h1>
+
+<%= simple_form_for (@message) do |f| %>
+		<%= f.input :receiver_id, collection: User.all %>
+		<%= f.input :content %>
+	<div class ="align-button-center">
+		<%= f.submit "Send", class: "btn btn-success w-100 my-3" %>
+	</div>	
+	<% end %>
+
 <h1>Your messages</h1>
+
+<% @sent.each do |message| %>
+  <h2>At: <%= message.receiver.first_name %> <%= message.receiver.last_name %></h2>
+  <p><%= message.content %></p>
+<% end %>
+
+<% @receipt.each do |message| %>
+  <h2>From: <%= message.sender.first_name %> <%= message.sender.last_name %></h2>
+  <p><%= message.content %></p>
+<% end %>
