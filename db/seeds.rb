@@ -95,7 +95,7 @@ bbq3.save
 bbq4 = Barbecue.create!(
     name: "Grill électrique Mythic Double Krampouz",
     model: "Krampouz",
-    address: "42 rue docteur legay la madeleine",
+    address: Faker::Address.city,
     description: "Le barbecue électrique MYTHIC double vous permet de maîtriser avec précision la cuisson de deux aliments à des températures différentes. Le MYTHIC est un parfait mélange d'élégance et de praticité, qui feront votre bonheur en terme de cuisine d'extérieure ! ",
     price: rand(30..40),
     capacity: "12",

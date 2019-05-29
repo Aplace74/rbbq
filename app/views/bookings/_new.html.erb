@@ -1,0 +1,14 @@
+<div class="form p-4">
+<h2 class="text-center">New Booking</h2>
+
+	<%= simple_form_for [@barbecue, @booking] do |f| %>
+		<%= f.input :start_date %>
+		<%= f.input :end_date %>
+		<div class="form-group text-center pt-4">
+		<div class="bg-light text-dark p-2 font-weight-bold rounded d-inline">Price: <span id="price"></span></div>
+		</div>
+		<%= f.hidden_field :rentalprice, value: @barbecue.price %>
+		<%= f.submit "Book this Barbecue", class: "btn btn-success w-100 my-3" %>
+	<% end %>
+	
+</div>

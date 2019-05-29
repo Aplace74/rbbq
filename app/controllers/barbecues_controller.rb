@@ -1,5 +1,5 @@
 class BarbecuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: :index
+  skip_before_action :authenticate_user!, only: [:index, :show] 
   before_action :set_barbecue, only: [:show, :edit, :update, :destroy]
   before_action :bbq_name_title, only: [:show, :edit]
 
@@ -10,6 +10,7 @@ class BarbecuesController < ApplicationController
   end
   
 	def show
+    @booking = Booking.new
     @marker = []
     @marker << 
       {
