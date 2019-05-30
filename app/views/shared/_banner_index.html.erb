@@ -1,12 +1,14 @@
-<div class="container">
-	<h1>AirBBQ</h1>
-	<p>Find the perfect Barbecue nearby</p>
-	<%= form_tag search_barbecues_path, method: :get, class: "simple_form search" do %>
-		<div class="search-form-control">
-			<%= text_field_tag :query,
+<div class="row h-100">
+	<div class="my-auto mx-auto">
+		<h1>AirBBQ</h1>
+		<p>Find the perfect Barbecue nearby...</p>
+		<%= form_tag search_barbecues_path, method: :get, class: "simple_form search" do %>
+			<div class="search-form-control">
+				<%= text_field_tag :query,
     params[:query],
     class: "form-control string required mr-sm-2",
     placeholder: "Search"%>
-		</div>
-	<% end %>
+			</div>
+		<% end %>
+	</div>
 </div>
