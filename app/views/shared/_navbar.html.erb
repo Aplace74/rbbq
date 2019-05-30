@@ -21,6 +21,7 @@
 				</li>
 				<li class="nav-item">
 					<%= link_to "Messages" , messages_path(current_user), class: "nav-link" %>
+					<div><%= current_user.messages_as_receiver.size %></div>
 				</li>
 				<li class="nav-item dropdown">
 					<div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
