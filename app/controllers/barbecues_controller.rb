@@ -59,24 +59,32 @@ class BarbecuesController < ApplicationController
   end
   
   def search
-    @title = params[:query]
+    @title = "Search: #{params[:query]}"
     @barbecues = policy_scope(Barbecue).near(params[:query], 10)
     authorize @barbecues
     if @barbecues.empty?
-      @barbecues
+      @barbecues = PgSearch.multisearch(params[:query])
+      @barbecues = @barbecues.map do |result|
+        Barbecue.find(result.searchable_id)
+      end
+      marker_map
     else
       @barbecues
-      @marker = @barbecues.map do |barbecue|
-        {
-          lat: barbecue.latitude,
-          lng: barbecue.longitude,
-          image_url: helpers.asset_url('logo.png')
-        }
-      end
+      marker_map
     end
   end
 
   private
+
+  def marker_map
+    @marker = @barbecues.map do |barbecue|
+      {
+        lat: barbecue.latitude,
+        lng: barbecue.longitude,
+        image_url: helpers.asset_url('logo.png')
+      }
+    end
+  end
 
   def barbecue_params
     params.require(:barbecue).permit!

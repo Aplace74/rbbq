@@ -1,0 +1,8 @@
+<%= form_tag search_barbecues_path, method: :get, class: "simple_form search" do %>
+	<div class="search-form-control">
+		<%= text_field_tag :query,
+    params[:query],
+    class: "form-control string required mr-sm-2",
+    placeholder: "Search"%>
+	</div>
+<% end %>

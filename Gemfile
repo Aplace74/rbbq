@@ -12,6 +12,7 @@ gem 'faker'
 gem 'pundit'
 gem "algoliasearch-rails"
 gem 'omniauth-facebook'
+gem 'pg_search'
 
 
 gem 'autoprefixer-rails'
