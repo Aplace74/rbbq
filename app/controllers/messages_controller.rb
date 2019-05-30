@@ -2,16 +2,22 @@ class MessagesController < ApplicationController
   def index
     @messages = Message.where("sender_id = #{current_user.id}")
                        .or(Message.where("receiver_id = #{current_user.id}"))
-                       .order(:created_at)
+                       .order(created_at: :desc)
+  end
+
+  def new
+    @message = Message.new
+    @receiver = User.find(params[:format])
   end
 
   def create
+    raise
     @message = Message.new(message_params)
     @message.sender_id = current_user.id
     if @message.save
       redirect_to messages_path(current_user)
     else
-      render :index
+      render :new
     end
   end
 

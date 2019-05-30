@@ -1,4 +1,9 @@
-<h1>My messages</h1>
+<div class="text-center m-5">
+	<h1>My messages</h1>
+	<% if @messages.size == 0 %>
+		<h2 class="text-secondary m-5">( No messages yet...) </h2>
+	<% end %>
+</div>
 
 <div class="container">
 	<% @messages.each do |message| %>
@@ -23,6 +28,8 @@
         	</div>
 					<div>
 						<span><%= link_to delete_message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %><i class="fas fa-trash"></i><% end %></span>
+						<span><%= link_to new_message_path(message.sender) do %><i class="fas fa-reply"></i><% end %></span>
+
 					</div>
 				</div>
 			<% else %>
@@ -35,6 +42,8 @@
 					<div>
 						<%= link_to 'mark as read', read_message_path(message), method: :patch, class: "btn btn-outline-primary text-primary" %>
 						<span><%= link_to delete_message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %><i class="fas fa-trash"></i><% end %></span>
+						<span><%= link_to new_message_path(message.sender) do %><i class="fas fa-reply"></i><% end %></span>
+
 					</div>
 				</div>
 			<% end %>
