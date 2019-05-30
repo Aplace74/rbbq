@@ -8,7 +8,10 @@
 		<div class="bg-light text-dark p-2 font-weight-bold rounded d-inline">Price: <span id="price"></span></div>
 		</div>
 		<%= f.hidden_field :rentalprice, value: @barbecue.price %>
-		<%= f.submit "Book this Barbecue", class: "btn btn-success w-100 my-3" %>
+		<% if policy(Booking).new? %>
+			<%= link_to dashboard_users_path do %>
+				<%= f.submit "Book this Barbecue", class: "btn btn-success w-100 my-3"%>
+			<% end %>
+		<% end %>
 	<% end %>
-	
 </div>

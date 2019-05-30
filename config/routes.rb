@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users,
+  controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'barbecues#index'
 
   resources :users, only: [:show] do
@@ -17,3 +18,6 @@ Rails.application.routes.draw do
   patch '/messages/:id/read', to: 'messages#read', as: :read_message
   get '/messages/new', to: 'messages#new', as: :new_message
 end
+
+
+
