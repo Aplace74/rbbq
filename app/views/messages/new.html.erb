@@ -1,0 +1,10 @@
+<div class="form">
+<h3>Write a message to <%= @receiver.first_name %></h3>
+<%= simple_form_for (@message) do |f| %>
+		<%= f.input :receiver_id, as: :hidden, input_html: { :value => @receiver.id } %>
+		<%= f.input :content %>
+	<div class ="align-button-center">
+		<%= f.submit "Send", class: "btn btn-success w-100 my-3" %>
+	</div>	
+	<% end %>
+</div>

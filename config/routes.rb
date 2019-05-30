@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show] do
     collection do
+      resources :messages, only: [:index, :create]
       get 'dashboard'
     end
   end
@@ -13,6 +14,9 @@ Rails.application.routes.draw do
   end
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
   patch '/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
+  delete '/messages/:id', to: 'messages#destroy', as: :delete_message
+  patch '/messages/:id/read', to: 'messages#read', as: :read_message
+  get '/messages/new', to: 'messages#new', as: :new_message
 end
 
 
