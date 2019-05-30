@@ -28,9 +28,8 @@ class BarbecuesController < ApplicationController
 
   def create
     @barbecue = Barbecue.new(barbecue_params)
-    authorize @barbecue
     @barbecue.user = current_user
-    @barbecue.save!
+    authorize @barbecue
     if @barbecue.save
       redirect_to barbecue_path(@barbecue)
     else
@@ -42,19 +41,19 @@ class BarbecuesController < ApplicationController
   def destroy
     @barbecue.destroy
     redirect_to dashboard_users_path
-	end
+  end
 	
-	def edit
-	end
+  def edit
+  end
 
-	def update
-		@barbecue.user = current_user
+  def update
+    @barbecue.user = current_user
     if @barbecue.update(barbecue_params)
       redirect_to barbecue_path(@barbecue)
     else
       render :edit
     end
-	end
+  end
 
   private
 

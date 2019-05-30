@@ -56,6 +56,17 @@ ActiveRecord::Schema.define(version: 2019_05_30_102702) do
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "sender_id"
+    t.bigint "receiver_id"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "read", default: false
+    t.index ["receiver_id"], name: "index_messages_on_receiver_id"
+    t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -68,6 +79,11 @@ ActiveRecord::Schema.define(version: 2019_05_30_102702) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "provider"
+    t.string "uid"
+    t.string "facebook_picture_url"
+    t.string "token"
+    t.datetime "token_expiry"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -77,4 +93,6 @@ ActiveRecord::Schema.define(version: 2019_05_30_102702) do
   add_foreign_key "bookings", "users"
   add_foreign_key "reviews", "barbecues"
   add_foreign_key "reviews", "users"
+  add_foreign_key "messages", "users", column: "receiver_id"
+  add_foreign_key "messages", "users", column: "sender_id"
 end
