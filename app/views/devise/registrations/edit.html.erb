@@ -13,6 +13,9 @@
     <%= f.input :last_name,
                 required: false,
                 autofocus: true%>
+    <%= f.input :phone,
+                required: false,
+                autofocus: true%>            
     <%= f.input :avatar %>
   	<%= f.input :avatar_cache, as: :hidden %>
 
@@ -42,6 +45,5 @@
 
 <p>Unhappy? <%= link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
 </div>
 </div>
