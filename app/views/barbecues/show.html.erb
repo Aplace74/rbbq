@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @barbecue.pictures%>');">
+<div class="bannershowcase" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @barbecue.pictures%>');">
 	<h1 class="mb-2"><%= @barbecue.name %></h1>
 	<h2><%= render 'shared/rating', barbecue: @barbecue %></h2>
 	<p class="font-weight-bold"><%= @barbecue.reviews.count %> review(s)</p>
