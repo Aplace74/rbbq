@@ -60,8 +60,21 @@ class BarbecuesController < ApplicationController
   end
   
   def search
-    @barbecues = policy_scope(Barbecue)
+    @title = params[:query]
+    @barbecues = policy_scope(Barbecue).near(params[:query], 10)
     authorize @barbecues
+    if @barbecues.empty?
+      @barbecues
+    else
+      @barbecues
+      @marker = @barbecues.map do |barbecue|
+        {
+          lat: barbecue.latitude,
+          lng: barbecue.longitude,
+          image_url: helpers.asset_url('logo.png')
+        }
+      end
+    end
   end
 
   private
