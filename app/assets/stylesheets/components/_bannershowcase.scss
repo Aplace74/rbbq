@@ -1,0 +1,35 @@
+.bannershowcase {
+  background-size: cover;
+  background-position: center;
+  padding: 80px 0;
+  text-align: center;
+  .search-form-control {
+    .form-control {
+      background-color: rgba(black, 0.3);
+      border: 2px solid white;
+      border-radius: 25px;
+      color: white;
+      &::placeholder {
+        color: rgba(white, 0.8);
+      }
+      &:focus{
+        border: 3px solid white;
+        background-color: rgba(black, 0.5);
+      }
+    }
+  }
+}
+
+.bannershowcase h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 36px;
+}
+
+.bannershowcase p {
+  font-size: 18px;
+  color: white;
+  opacity: .8;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+}

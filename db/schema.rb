@@ -45,17 +45,6 @@ ActiveRecord::Schema.define(version: 2019_05_30_102702) do
     t.index ["user_id"], name: "index_bookings_on_user_id"
   end
 
-  create_table "reviews", force: :cascade do |t|
-    t.text "content"
-    t.integer "rating", default: 0
-    t.bigint "user_id"
-    t.bigint "barbecue_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["barbecue_id"], name: "index_reviews_on_barbecue_id"
-    t.index ["user_id"], name: "index_reviews_on_user_id"
-  end
-
   create_table "messages", force: :cascade do |t|
     t.bigint "sender_id"
     t.bigint "receiver_id"
@@ -65,6 +54,17 @@ ActiveRecord::Schema.define(version: 2019_05_30_102702) do
     t.boolean "read", default: false
     t.index ["receiver_id"], name: "index_messages_on_receiver_id"
     t.index ["sender_id"], name: "index_messages_on_sender_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.text "content"
+    t.integer "rating", default: 0
+    t.bigint "user_id"
+    t.bigint "barbecue_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["barbecue_id"], name: "index_reviews_on_barbecue_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -91,8 +91,8 @@ ActiveRecord::Schema.define(version: 2019_05_30_102702) do
   add_foreign_key "barbecues", "users"
   add_foreign_key "bookings", "barbecues"
   add_foreign_key "bookings", "users"
-  add_foreign_key "reviews", "barbecues"
-  add_foreign_key "reviews", "users"
   add_foreign_key "messages", "users", column: "receiver_id"
   add_foreign_key "messages", "users", column: "sender_id"
+  add_foreign_key "reviews", "barbecues"
+  add_foreign_key "reviews", "users"
 end
