@@ -9,7 +9,7 @@ class BarbecuesController < ApplicationController
     @title = "AirBBQ"
   end
   
-	def show
+  def show
     @booking = Booking.new
     @marker = []
     @marker << 

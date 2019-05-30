@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   resources :barbecues do 
     resources :bookings, except: [:show, :index, :destroy]
+    resources :reviews, only: [:new, :create]
   end
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
   patch '/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking

@@ -4,4 +4,5 @@ class Review < ApplicationRecord
   belongs_to :barbecue
 
   validates :content, :rating, presence: true
+  validates :rating, inclusion: { in: STARS }
 end

@@ -3,6 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :barbecues
   has_many :reviews
+  has_many :bookings, through: :barbecues
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable

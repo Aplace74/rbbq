@@ -1,6 +1,12 @@
-<% barbecue.rating.times do %>
-	<span class="fas fa-star text-warning"></span>
-<% end %>
-<% (5 - barbecue.rating).times do %>
+<% if barbecue.reviews.count > 0 %>
+	<% barbecue.reviews.average(:rating).round.times do %>
+		<span class="fas fa-star text-warning"></span>
+	<% end %>
+	<% (5 - barbecue.reviews.average(:rating).round).times do %>
+		<span class="far fa-star text-warning"></span>
+	<% end %>
+<% else %>
+ <% 5.times do %>
 	<span class="far fa-star text-warning"></span>
-<% end %>
+ <%end%>
+<%end%>

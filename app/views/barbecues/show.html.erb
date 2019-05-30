@@ -1,6 +1,7 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)), url('<%= cl_image_path @barbecue.pictures%>');">
-	<h1><%= @barbecue.name %></h1>
+	<h1 class="mb-2"><%= @barbecue.name %></h1>
 	<h2><%= render 'shared/rating', barbecue: @barbecue %></h2>
+	<p class="font-weight-bold"><%= @barbecue.reviews.count %> review(s)</p>
 </div>
 
 <div class="container">
@@ -11,7 +12,7 @@
 		</div>
 
 		<div class="col-lg-5 p-4">
-			<% full_name = @barbecue.user.first_name + @barbecue.user.last_name %>
+			<% full_name = @barbecue.user.first_name + " " + @barbecue.user.last_name %>
 			<p><%= cl_image_tag(@barbecue.user.avatar, crop: :fill, class: "avatar") %> <%= link_to full_name, user_path(@barbecue.user.id), class: "text-secondary" %></p>
 			<p><strong>Type:</strong> <%= @barbecue.types.capitalize %></p>
 			<p><strong><i class="fas fa-clipboard-list"></i></strong> <%= @barbecue.description %></p>
@@ -26,7 +27,16 @@
 					<%= link_to barbecue_path, data: { confirm: 'Are you sure?' },class: "btn btn-danger", method: :delete do %>
 						<i class="fas fa-trash-alt"></i> Delete
 					<% end %>
-				<% end %>	
+				<% end %>
+				<% if @barbecue.user != current_user && @barbecue.user.bookings.count >= 1 %>
+					<%= link_to new_barbecue_review_path(@barbecue), class:"btn btn-success" do %>
+						<i class="fas fa-edit"></i> Add a review
+					<% end %>
+				<%end%>	
+				<% if @barbecue.user != current_user && @barbecue.user.bookings.count == 0 %>
+					<p><a class="btn btn-success disabled" href="#"><i class="fas fa-edit"></i> Add a review</a><br>
+					You must rent this barbecue to review it.</p>
+				<%end%>					
 			</p>
 		</div>
 		<% if @barbecue.user != current_user %>
@@ -34,14 +44,42 @@
 			<%= render "bookings/new" %>
 		</div>
 		<%end%>
-
-		<div class ="col-lg-12"
-        id="map"
-        style="width: 100%;
-        height: 400px;"
-        data-markers="<%= @marker.to_json %>"
-        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-		</div>
+		
 	</div>
+
+	<div class="row">
+			<div class ="col-lg-8"
+			id="map"
+			style="width: 100%;
+			height: 400px;"
+			data-markers="<%= @marker.to_json %>"
+			data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+			</div>
+
+			<div class="col-lg-4 px-3">
+				<h3 class="mb-3 text-center">Reviews</h3>
+				<% if @barbecue.reviews.count >= 1 %>
+					<% @barbecue.reviews.each do |r| %>
+					<ul class="list-unstyled">
+						<li class="media bg-light p-3 rounded">
+							<%= cl_image_tag(r.user.avatar, crop: :fill, class: "avatar mr-3") %>
+							<div class="media-body">
+								<h5 class="mt-0"><%= link_to "#{r.user.first_name} #{r.user.last_name}", user_path(r.user.id), class: "text-secondary" %></h5>
+								<% r.rating.times do %>
+									<span class="fas fa-star text-warning"></span>
+								<% end %>
+								<% (5 - r.rating).times do %>
+									<span class="far fa-star text-warning"></span>
+								<% end %><br>
+								<%= r.content %>
+							</div>
+						</li>
+					</ul>
+					<%end%>
+				<%else%>
+					<p class="text-center">This barbecue hasn't been reviewed yet</p>
+				<%end%>
+			</div>
+		</div>
 </div>
 
