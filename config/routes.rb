@@ -13,4 +13,6 @@ Rails.application.routes.draw do
   end
   delete '/bookings/:id', to: 'bookings#destroy', as: :delete_booking
   patch '/bookings/:id/accept', to: 'bookings#accept', as: :accept_booking
+  delete '/messages/:id', to: 'messages#destroy', as: :delete_message
+  patch '/messages/:id/read', to: 'messages#read', as: :read_message
 end

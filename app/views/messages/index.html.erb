@@ -1,37 +1,44 @@
-<h1>Messages</h1>
-
-<div class="form">
-<h3>Write a new message</h3>
-<%= simple_form_for (@message) do |f| %>
-		<%= f.input :receiver_id, collection: User.all %>
-		<%= f.input :content %>
-	<div class ="align-button-center">
-		<%= f.submit "Send", class: "btn btn-success w-100 my-3" %>
-	</div>	
-	<% end %>
-</div>
-
-<h1>Your messages</h1>
+<h1>My messages</h1>
 
 <div class="container">
-	<div class="row">
-		<div class="col-6 bg-white p-3">
-			<h2>Messages sent</h2>
-			<% @sent.each do |message| %>
-				<div class="message">
+	<% @messages.each do |message| %>
+		<% if message.sender == current_user %>
+		<div class="sent message">
+			<div>
+				<%= cl_image_tag message.receiver.avatar, crop: :fill, class: "avatar" %>
 				<p>At: <strong><%= message.receiver.first_name %> <%= message.receiver.last_name %></strong></p>
-				<span><%= message.content %></span>
+				<p><%= message.content %></p>
+			</div>
+			<div>
+				<span><%= link_to delete_message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %><i class="fas fa-trash"></i><% end %></span>
+			</div>
+		</div>
+		<% else %>
+			<% if message.read %>
+				<div class="received message">
+					<div>
+						<%= cl_image_tag message.sender.avatar, crop: :fill, class: "avatar" %>
+				  	<p>From: <strong><%= message.sender.first_name %> <%= message.sender.last_name %></strong></p>
+				  	<p><%= message.content %></p>
+        	</div>
+					<div>
+						<span><%= link_to delete_message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %><i class="fas fa-trash"></i><% end %></span>
+					</div>
+				</div>
+			<% else %>
+				<div class="new received message">
+					<div>
+						<%= cl_image_tag message.sender.avatar, crop: :fill, class: "avatar" %>
+				  	<p>From: <strong><%= message.sender.first_name %> <%= message.sender.last_name %></strong></p>
+				  	<p><%= message.content %></p>
+        	</div>
+					<div>
+						<%= link_to 'mark as read', read_message_path(message), method: :patch, class: "btn btn-outline-primary text-primary" %>
+						<span><%= link_to delete_message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %><i class="fas fa-trash"></i><% end %></span>
+					</div>
 				</div>
 			<% end %>
-		</div>
-		<div class="col-6 bg-white p-3">
-			<h2>Messages received</h2>
-			<% @receipt.each do |message| %>
-				<div class="message">
-				<p>From: <strong><%= message.sender.first_name %> <%= message.sender.last_name %></strong></p>
-				<span><%= message.content %></span>
-				</div>
-			<% end %>
-		</div>
-	</div>
+		<% end %>
+	<% end %>
 </div>
+      

@@ -1,8 +1,8 @@
 class MessagesController < ApplicationController
   def index
-    @sent = Message.where(sender_id: current_user.id).order(:created_at)
-    @receipt = Message.where(receiver_id: current_user.id).order(:created_at)
-    @message = Message.new
+    @messages = Message.where("sender_id = #{current_user.id}")
+                       .or(Message.where("receiver_id = #{current_user.id}"))
+                       .order(:created_at)
   end
 
   def create
@@ -15,7 +15,17 @@ class MessagesController < ApplicationController
     end
   end
 
-  def chat
+  def read
+    @message = Message.find(params[:id])
+    @message.read = true
+    @message.save
+    redirect_to messages_path
+  end
+
+  def destroy
+    @message = Message.find(params[:id])
+    @message.destroy
+    redirect_to messages_path
   end
 
   private

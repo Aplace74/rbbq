@@ -19,7 +19,6 @@ class BookingsController < ApplicationController
   def edit
     @barbecue = Barbecue.find(params[:barbecue_id])
     @booking = Booking.find(params[:id])
-    title = "Edit for #{barbecue.name} "
   end
 
   def update
