@@ -19,13 +19,17 @@
       <ul class="navbar-nav mr-auto">
           <li class="nav-item">
           <li class="nav-item active">
-					<%= link_to "Dashboard" , dashboard_users_path(current_user), class: "nav-link" %>
+					<%= link_to "Dashboard" , dashboard_users_path, class: "nav-link" %>
 				</li>
             <a class="nav-link" href="#">Messages</a>
           </li>
           <li class="nav-item dropdown">
             <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= cl_image_tag(current_user.avatar, crop: :fill, class: "avatar dropdown-toggle", id: "navbarDropdown") %>
+              <% if current_user.facebook_picture_url.present? %>
+                <%= image_tag current_user.facebook_picture_url, class: "avatar dropdown-toggle", id: "navbarDropdown" %>
+              <% else %>
+                <%= cl_image_tag(current_user.avatar, crop: :fill, class: "avatar dropdown-toggle", id: "navbarDropdown") %>
+              <% end %>
             </div>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
               <%= link_to "Profile" , user_path(current_user), class: "dropdown-item" %>
