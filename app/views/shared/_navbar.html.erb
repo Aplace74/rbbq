@@ -21,8 +21,11 @@
           <li class="nav-item active">
 					<%= link_to "Dashboard" , dashboard_users_path, class: "nav-link" %>
 				</li>
-            <a class="nav-link" href="#">Messages</a>
-          </li>
+        <li class="nav-item">
+					<%= link_to messages_path(current_user), class: "nav-link" do %>
+						Messages <span class="badg"><%= current_user.messages_as_receiver.where(read: false).size %></span>
+					<% end %>
+				</li>
           <li class="nav-item dropdown">
             <div data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <% if current_user.facebook_picture_url.present? %>
@@ -39,6 +42,5 @@
       </ul>
     </div>
   <% end %>
-
 </div>
 					

@@ -1,0 +1,18 @@
+.message {
+  border-bottom: 1px solid rgb(223, 223, 223);
+  padding: 5px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.received {
+  background-color: rgba(255, 255, 0, 0.1);
+}
+
+.new {
+  border-left: 3px solid Blue;
+}
+
+.sent {
+  background-color: white; 
+}

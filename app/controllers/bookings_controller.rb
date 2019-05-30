@@ -8,9 +8,9 @@ class BookingsController < ApplicationController
   def create
     @barbecue = Barbecue.find(params[:barbecue_id])
     @booking = Booking.new(booking_params)
-    authorize @booking
     @booking.barbecue = @barbecue
     @booking.user = current_user
+    authorize @booking
     if @booking.save
       redirect_to dashboard_users_path(@user)
     else
@@ -22,14 +22,11 @@ class BookingsController < ApplicationController
     @barbecue = Barbecue.find(params[:barbecue_id])
     @booking = Booking.find(params[:id])
     authorize @booking
-    title = "Edit for #{barbecue.name} "
   end
 
   def update
     @booking = Booking.find(params[:id])
     authorize @booking
-    @booking.update(booking_params)
-
     if @booking.update(booking_params)
       redirect_to dashboard_users_path(@user)
     else
@@ -47,8 +44,8 @@ class BookingsController < ApplicationController
 
   def accept
     @booking = Booking.find(params[:id])
-    authorize @booking
     @booking.accepted = true
+    authorize @booking
     @booking.save
     redirect_to dashboard_users_path(@user)
   end
