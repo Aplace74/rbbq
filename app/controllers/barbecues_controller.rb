@@ -54,7 +54,10 @@ class BarbecuesController < ApplicationController
     else
       render :edit
     end
-	end
+  end
+  
+  def search
+  end
 
   private
 
