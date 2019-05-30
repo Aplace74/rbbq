@@ -1,18 +1,18 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.where("sender_id = #{current_user.id}")
-                       .or(Message.where("receiver_id = #{current_user.id}"))
-                       .order(created_at: :desc)
+    @messages = policy_scope(Message)
+    authorize @messages
   end
 
   def new
     @message = Message.new
+    authorize @message
     @receiver = User.find(params[:format])
   end
 
   def create
-    raise
     @message = Message.new(message_params)
+    authorize @message
     @message.sender_id = current_user.id
     if @message.save
       redirect_to messages_path(current_user)
@@ -23,6 +23,7 @@ class MessagesController < ApplicationController
 
   def read
     @message = Message.find(params[:id])
+    authorize @message
     @message.read = true
     @message.save
     redirect_to messages_path
@@ -30,6 +31,7 @@ class MessagesController < ApplicationController
 
   def destroy
     @message = Message.find(params[:id])
+    authorize @message
     @message.destroy
     redirect_to messages_path
   end
