@@ -1,6 +1,9 @@
 class Barbecue < ApplicationRecord
-  TYPES = ['electric', 'gas', 'coal']
+  TYPES = ['electric', 'gas', 'coal', 'other']
   STARS = [0, 1, 2, 3, 4, 5]
+
+  include PgSearch
+  multisearchable against: [ :name, :description, :model, :types, :capacity ]
 
   belongs_to :user
   has_many :bookings

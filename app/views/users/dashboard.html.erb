@@ -42,7 +42,10 @@
         <% if current_user.id == booking.barbecue.user_id %>
           <div class="booking">
           <% if booking.accepted %>
-            <p><%= link_to user_path(booking.user), style: "color: gray" do %><%= booking.user.first_name %> <%= booking.user.last_name %><% end %> will rents your <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %>.</p>
+            <p><%= link_to user_path(booking.user), style: "color: gray" do %>
+            <%= booking.user.first_name %> <%= booking.user.last_name %>
+            <% end %>
+             will rents your <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %>.</p>
             <p>From : <%= booking.start_date %></p>
             <p>To : <%= booking.end_date %></p>
             <p class="mx-1 text-right text-success"><i class="fas fa-check-circle"></i> You confirmed this booking !</p>
