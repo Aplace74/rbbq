@@ -1,11 +1,14 @@
 class BarbecuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show] 
+  skip_before_action :authenticate_user!, only: [:index, :show, :search] 
   before_action :set_barbecue, only: [:show, :edit, :update, :destroy]
   before_action :bbq_name_title, only: [:show, :edit]
 
   def index
-    @barbecues = Barbecue.all
-    @barbecues = policy_scope(Barbecue)
+    if
+      @barbecues = policy_scope(Barbecue)
+    else
+      @barbecues = policy_scope(Barbecue)
+    end
     @title = "AirBBQ"
   end
   
@@ -57,6 +60,8 @@ class BarbecuesController < ApplicationController
   end
   
   def search
+    @barbecues = policy_scope(Barbecue)
+    authorize @barbecues
   end
 
   private
