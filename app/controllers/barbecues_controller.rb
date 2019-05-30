@@ -1,11 +1,14 @@
 class BarbecuesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show] 
+  skip_before_action :authenticate_user!, only: [:index, :show, :search] 
   before_action :set_barbecue, only: [:show, :edit, :update, :destroy]
   before_action :bbq_name_title, only: [:show, :edit]
 
   def index
-    @barbecues = Barbecue.all
-    @barbecues = policy_scope(Barbecue)
+    if
+      @barbecues = policy_scope(Barbecue)
+    else
+      @barbecues = policy_scope(Barbecue)
+    end
     @title = "AirBBQ"
   end
   
@@ -54,8 +57,34 @@ class BarbecuesController < ApplicationController
       render :edit
     end
   end
+  
+  def search
+    @title = "Search: '#{params[:query]}'"
+    @barbecues = policy_scope(Barbecue).near(params[:query], 10)
+    authorize @barbecues
+    if @barbecues.empty?
+      @barbecues = PgSearch.multisearch(params[:query])
+      @barbecues = @barbecues.map do |result|
+        Barbecue.find(result.searchable_id)
+      end
+      marker_map
+    else
+      @barbecues
+      marker_map
+    end
+  end
 
   private
+
+  def marker_map
+    @marker = @barbecues.map do |barbecue|
+      {
+        lat: barbecue.latitude,
+        lng: barbecue.longitude,
+        image_url: helpers.asset_url('logo.png')
+      }
+    end
+  end
 
   def barbecue_params
     params.require(:barbecue).permit!

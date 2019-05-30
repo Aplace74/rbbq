@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   root to: 'barbecues#index'
 
+
   resources :users, only: [:show] do
     collection do
       resources :messages, only: [:index, :create]
@@ -11,6 +12,9 @@ Rails.application.routes.draw do
     end
   end
   resources :barbecues do 
+    collection do
+      get 'search'
+    end
     resources :bookings, except: [:show, :index, :destroy]
     resources :reviews, only: [:new, :create]
   end
