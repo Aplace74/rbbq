@@ -55,10 +55,10 @@ users = [chris, aym, anto, max]
 puts "Users created, creating Barbecues ..."
 
 bbq1 = Barbecue.create!(
-    name: "Barbecue Charbon Mendy-Alde Baïa Le Marquier",
+    name: "Barbecue Coal Mendy-Alde Baïa Le Marquier",
     model: "Le Marquier",
     address: "38 avenue du domaine de la vallée Bousbecque",
-    description: "Ce barbecue robuste est encastré dans un chariot pour pouvoir le déplacer facilement. Le chariot est équipé de 2 larges roues pour faciliter le déplacement sur tout type de terrain.",
+    description: "This sturdy barbeque is built into a trolley for easy movement. The trolley is equipped with 2 wide wheels to facilitate the movement on any type of ground.",
     price: rand(30..40),
     capacity: "12",
     types: "coal",
@@ -69,10 +69,10 @@ bbq1.remote_pictures_url = "https://www.esprit-barbecue.fr/5446-thickbox_default
 bbq1.save
 
 bbq2 = Barbecue.create!(
-    name: "Barbecue charbon Weber Compact Kettle 47 cm",
+    name: "Barbecue Coal Weber Compact Kettle 47 cm",
     model: "Weber",
     address: "22 boulevard bigo danel Lille",
-    description: "Barbecue léger, de petite taille, facilement mobile. L’accroche couvercle vous évite de le reposer dans votre pelouse et de la brûler.",
+    description: "Light barbecue, small size, easily mobile. The grip to cover you avoid sitting in your lawn and burning.",
     price: rand(20..30),
     capacity: "8",
     types: "coal",
@@ -83,10 +83,12 @@ bbq2.remote_pictures_url = "https://www.esprit-barbecue.fr/96-thickbox_default/b
 bbq2.save
 
 bbq3 = Barbecue.create!(
-    name: "Barbecue Weber gaz Q3200",
+    name: "Barbecue Weber Gaz Q3200",
     model: "Weber",
     address: "2632 route du col de terramont HABERE POCHE",
-    description: "L'espace de cuisson est large, idéal permettant de cuisiner pour un grand nombre de personnes. Equipé de deux brûleurs, vous pouvez réaliser deux types de cuisson: directe ou indirecte.",
+    description: "
+    185/5000
+    The cooking space is wide, ideal for cooking for a large number of people. Equipped with two burners, you can achieve two types of cooking: direct or indirect.",
     price: rand(30..40),
     capacity: "12",
     types: "gas",
@@ -97,10 +99,10 @@ bbq3.remote_pictures_url = "https://www.esprit-barbecue.fr/1751-thickbox_default
 bbq3.save
 
 bbq4 = Barbecue.create!(
-    name: "Grill électrique Mythic Double Krampouz",
+    name: "Electric Grill Mythic Double Krampouz",
     model: "Krampouz",
     address: Faker::Address.city,
-    description: "Le barbecue électrique MYTHIC double vous permet de maîtriser avec précision la cuisson de deux aliments à des températures différentes. Le MYTHIC est un parfait mélange d'élégance et de praticité, qui feront votre bonheur en terme de cuisine d'extérieure ! ",
+    description: "The MYTHIC double electric barbecue allows you to precisely control the cooking of two foods at different temperatures. The MYTHIC is a perfect blend of elegance and practicality, which will make you happy in terms of outdoor cooking!",
     price: rand(30..40),
     capacity: "12",
     types: "electric",
@@ -111,10 +113,10 @@ bbq4.remote_pictures_url = "https://www.esprit-barbecue.fr/6009-thickbox_default
 bbq4.save
 
 bbq5 = Barbecue.create!(
-    name: "Plancha gaz Eno Oceane 50 avec chariot",
+    name: "Plancha Gaz Eno Oceane 50 avec chariot",
     model: "Eno",
     address: "301 rue de lille Roncq",
-    description: "Fabriquée en France et d’excellente qualité, cette plancha vous permettra de réaliser de délicieuses grillades très facilement pour 4 à 6 personnes.",
+    description: "Made in France and of excellent quality, this plancha will allow you to make delicious grills very easily for 4 to 6 people.",
     price: rand(20..30),
     capacity: "6",
     types: "gas",
@@ -125,10 +127,10 @@ bbq5.remote_pictures_url = "https://www.esprit-barbecue.fr/8097-thickbox_default
 bbq5.save
 
 bbq6 = Barbecue.create!(
-    name: "Plancha électrique Design 1800W",
+    name: "Electric Plancha Design 1800W",
     model: "Krampounz",
     address: "64 Rue de Bourgogne lille",
-    description: "Voici la plancha électrique Design 1800W, 100% inox procurant ainsi un très grand confort de cuisson.",
+    description: "Here is the Electric 1800W, 100% stainless steel plancha providing a very comfortable cooking.",
     price: rand(20..30),
     capacity: "6",
     types: "electric",
@@ -139,10 +141,10 @@ bbq6.remote_pictures_url = "https://www.esprit-barbecue.fr/5761-thickbox_default
 bbq6.save
 
 bbq7 = Barbecue.create!(
-    name: "Barbecue charbon Tonino 1",
-    model: "Esprit Barbecue",
+    name: "Barbecue Coal Tonino 1",
+    model: "Barbecue Spirit",
     address: "8 Rue Creuse Blangy-sur-Ternoise",
-    description: "Le barbecue idéal pour vos repas en famille ou entre amis. Sa large surface de cuisson (2 grilles + une plancha en fonte émaillée) vous permet de convier jusqu'à 10 personnes.",
+    description: "The ideal barbecue for your meals with family or friends. Its large cooking surface (2 grids + enamelled cast iron plancha) allows you to invite up to 10 people.",
     price: rand(20..30),
     capacity: "8",
     types: "coal",
@@ -186,14 +188,14 @@ booking3 = Booking.create!(
 puts "creating reviews"
 
 review1 = Review.create!(
-    content: "Excellent bbq et proprio très sympa. Je recommande !",
+    content: "Excellent bbq & really nice owner. I recommend!",
     rating: 5,
     user_id: anto[:id],
     barbecue_id: bbq1[:id]
 )
 
 review2 = Review.create!(
-    content: "Barbecue fidèle à la description, mais proprio pas fiable. Il était absent quand j'ai voulu rapporter le bbq et j'ai dû y retourner 2 fois.",
+    content: "BBQ faithful to the description, but not reliable owner. He was away when I wanted to bring back the bbq and I had to go back there twice.",
     rating: 3,
     user_id: chris[:id],
     barbecue_id: bbq7[:id]
