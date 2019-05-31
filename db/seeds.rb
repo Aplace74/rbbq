@@ -65,7 +65,7 @@ bbq1 = Barbecue.create!(
     rating: [0, 1, 2, 3, 4, 5].sample,
     user: chris
 )
-bbq1.remote_pictures_url = "https://www.esprit-barbecue.fr/5446-thickbox_default/barbecue-charbon-mendy-alde-le-marquier.jpg"
+bbq1.remote_pictures_url = "https://img6.leboncoin.fr/ad-image/7ccdd30b0e52314b46e88395b8cc3b80b6f84534.jpg"
 bbq1.save
 
 bbq2 = Barbecue.create!(
@@ -79,7 +79,7 @@ bbq2 = Barbecue.create!(
     rating: [0, 1, 2, 3, 4, 5].sample,
     user: aym
 )
-bbq2.remote_pictures_url = "https://www.esprit-barbecue.fr/96-thickbox_default/barbecue-weber-compact-kettle-47-cm.jpg"
+bbq2.remote_pictures_url = "https://img0.leboncoin.fr/ad-image/718266ec3fe1c3a467a20c20118dde2ecfd985e3.jpg"
 bbq2.save
 
 bbq3 = Barbecue.create!(
@@ -109,7 +109,7 @@ bbq4 = Barbecue.create!(
     rating: [0, 1, 2, 3, 4, 5].sample,
     user: max
 )
-bbq4.remote_pictures_url = "https://www.esprit-barbecue.fr/6009-thickbox_default/gril-electrique-mythic-double-krampouz.jpg"
+bbq4.remote_pictures_url = "https://img0.leboncoin.fr/ad-image/66458cb22de503b5329bf758a190685dd0c1de7e.jpg"
 bbq4.save
 
 bbq5 = Barbecue.create!(
@@ -123,7 +123,7 @@ bbq5 = Barbecue.create!(
     rating: [0, 1, 2, 3, 4, 5].sample,
     user: chris
 )
-bbq5.remote_pictures_url = "https://www.esprit-barbecue.fr/8097-thickbox_default/plancha-gaz-oceane-50-eno.jpg"
+bbq5.remote_pictures_url = "https://img5.leboncoin.fr/ad-image/25f81c478d8a8c5c92118279b98db5b685b109a0.jpg"
 bbq5.save
 
 bbq6 = Barbecue.create!(
@@ -151,7 +151,7 @@ bbq7 = Barbecue.create!(
     rating: [0, 1, 2, 3, 4, 5].sample,
     user: anto
 )
-bbq7.remote_pictures_url = "https://www.esprit-barbecue.fr/7456-thickbox_default/barbecue-tonino-1-charbon-acier.jpg"
+bbq7.remote_pictures_url = "https://img7.leboncoin.fr/ad-image/b8a012ee32f1b05f8fe1d2642915aa3a1051bab6.jpg"
 bbq7.save
 
 puts "creating bookings"
