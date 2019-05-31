@@ -6,7 +6,25 @@
 }
 
 .profile {
+  margin-bottom: 25px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 2fr;
+  .part {
+    height: 100%;
+  }
+}
 
+@media (min-width: 100px) and (max-width: 575px) {
+  .profile {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 576px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
 }
 
 .bbqs {
