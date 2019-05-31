@@ -3,6 +3,13 @@ function refreshForm(innerHTML) {
   newReviewForm.innerHTML = innerHTML;
 }
 
+function refreshRating(innerHTML) {
+  const newRating = document.querySelector('.bannershowcase h2');
+  const newCount = document.querySelector('.bannershowcase p');
+  newRating.innerHTML = innerHTML;
+  newCount.innerText = "<%= @barbecue.reviews.count %> review(s)";
+}
+
 function addReview(reviewHTML) {
   const reviews = document.getElementById('reviews');
   reviews.insertAdjacentHTML('beforeend', reviewHTML);
@@ -12,5 +19,6 @@ function addReview(reviewHTML) {
   refreshForm('<%= j render "reviews/form", barbecue: @barbecue, review: @review %>');
 <% else %>
   addReview('<%= j render "reviews/show", review: @review %>');
+  refreshRating('<%= j render 'shared/rating', barbecue: @barbecue %>')
   refreshForm('<%= j render "reviews/form", barbecue: @barbecue, review: Review.new %>');
 <% end %>
