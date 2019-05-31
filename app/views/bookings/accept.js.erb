@@ -1,0 +1,5 @@
+function refreshBooking(innerHTML) {
+  const newBooking = document.querySelector("[data-booking-id='<%= @booking.id %>']")
+  newBooking.innerHTML = innerHTML;
+}
+refreshBooking('<%= j render 'bookings/card', booking: @booking %>')
