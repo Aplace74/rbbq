@@ -1,0 +1,16 @@
+function refreshForm(innerHTML) {
+  const newMessage = document.getElementById('new_message');
+  newMessage.innerHTML = innerHTML;
+}
+
+function addMessage(reviewHTML) {
+  const messages = document.getElementById('messages');
+  messages.insertAdjacentHTML('beforeend', messageHTML);
+}
+
+<% if @message.errors.any? %>
+  refreshForm('<%= j render "messages/form", restaurant: @restaurant, message: @message %>');
+<% else %>
+  addMessage('<%= j render "messages/show", message: @message %>');
+  refreshForm('<%= j render "messages/form", restaurant: @restaurant, message: Message.new %>');
+<% end %>

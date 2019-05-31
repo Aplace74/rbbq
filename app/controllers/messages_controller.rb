@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   def new
     @message = Message.new
     authorize @message
-    @receiver = User.find(params[:format])
+    @receiver = User.find(params[:id])
   end
 
   def create
@@ -15,9 +15,15 @@ class MessagesController < ApplicationController
     authorize @message
     @message.sender_id = current_user.id
     if @message.save
-      redirect_to messages_path(current_user)
+      respond_to do |format|
+        format.html { redirect_to messages_path(@message) }
+        format.js  # <-- will render `app/views/reviews/create.js.erb`
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html { render 'messages/show' }
+        format.js  # <-- idem
+      end
     end
   end
 
@@ -33,7 +39,6 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     authorize @message
     @message.destroy
-    redirect_to messages_path
   end
 
   private
