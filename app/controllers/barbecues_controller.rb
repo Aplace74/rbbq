@@ -11,17 +11,17 @@ class BarbecuesController < ApplicationController
     end
     @title = "AirBBQ"
   end
-  
+
   def show
     @booking = Booking.new
     @marker = []
-    @marker << 
+    @marker <<
       {
         lat: @barbecue.latitude,
         lng: @barbecue.longitude,
         image_url: helpers.asset_url('logo.png')
       }
-	end
+  end
 
   def new
     @barbecue = Barbecue.new
@@ -42,10 +42,10 @@ class BarbecuesController < ApplicationController
   end
 
   def destroy
+    authorize @barbecue
     @barbecue.destroy
-    redirect_to dashboard_users_path
   end
-	
+
   def edit
   end
 
@@ -57,7 +57,7 @@ class BarbecuesController < ApplicationController
       render :edit
     end
   end
-  
+
   def search
     @title = "Search: '#{params[:query]}'"
     @barbecues = policy_scope(Barbecue).near(params[:query], 10)

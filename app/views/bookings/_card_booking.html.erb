@@ -1,0 +1,28 @@
+<div class="booking" data-booking-id="<%= booking.id %>">
+  <p>
+    You booked a 
+    <%= link_to barbecue_path(booking.barbecue), class: "text-secondary" do %>
+      <%= booking.barbecue.name %>
+    <% end %>
+    to 
+    <%= link_to user_path(booking.barbecue.user), class: "text-secondary" do %>
+      <%= booking.barbecue.user.first_name %> <%= booking.barbecue.user.last_name %>
+    <% end %>.
+  </p>
+  <p>From : <%= booking.start_date %></p>
+  <p>To : <%= booking.end_date %></p>
+  <% if booking.accepted %>
+    <p class="mx-1 text-right text-success">
+      <i class="fas fa-check-circle"></i> Accepted by the owner !
+    </p>
+  <% else %>
+    <p class="mx-1 text-right text-warning">
+      <i class="fas fa-hourglass-start"></i> Waiting for a confirmation...
+    </p>
+  <% end %>
+  <p class="mx-1 text-right">
+    <%= link_to delete_booking_path(booking), remote: true, method: :delete, data: { confirm: "Are you sure?" }, class: "text-secondary" do %>
+      <i class="fas fa-times"></i> Cancel
+    <% end %>
+  </p>
+</div>

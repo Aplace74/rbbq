@@ -24,7 +24,7 @@
 					<%= link_to edit_barbecue_path(@barbecue), class:"btn btn-success" do %>
 						<i class="fas fa-edit"></i> Update
 					<% end %>
-					<%= link_to barbecue_path, data: { confirm: 'Are you sure?' },class: "btn btn-danger", method: :delete do %>
+					<%= link_to barbecue_path,remote: true, data: { confirm: 'Are you sure?' },class: "btn btn-danger", method: :delete do %>
 						<i class="fas fa-trash-alt"></i> Delete
 					<% end %>
 				<% end %>

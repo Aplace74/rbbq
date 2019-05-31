@@ -7,15 +7,16 @@
       <h2><%= @user.first_name %> <%= @user.last_name %></h1>
         <p><i class="fas fa-phone"></i> <%= @user.phone %></p>
         <p><i class="fas fa-envelope"></i> <%= @user.email %></p>
+        <p><i class="fas fa-comment"></i> <%= @user.reviews.count %></p>
         <div class="text-center"><%= link_to 'Send a Message', new_message_path(@user), class: "btn btn-success" %></div>
       </div>
     </div>
 
     <div class="col-12 col-lg-7">
-      <div class="part cards d-flex">
+      <div class="part cards d-flex justify-content-center">
         <h2 class="text-center m-3"><%= @user.first_name %>'s barbecues (<%= @user.barbecues.count %>)</h2>
           <% @user.barbecues.each do |barbecue| %>
-            <%= render 'shared/card', barbecue: barbecue %>
+            <%= render 'shared/card_light', barbecue: barbecue %>
           <% end %>
       </div>
     </div>

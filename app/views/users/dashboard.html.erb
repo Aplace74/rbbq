@@ -20,18 +20,9 @@
       <div class="part bbqs">
         <h3>My Barbecues</h3>
         <% @user.barbecues.each do |b| %>
-        <%= link_to barbecue_path(b), style: "color: gray" do %>
-          <div class="bbq my-3">
-            <p class="my-1"><strong><%= b.name %></strong></p>
-            <span>( <%= b.rating %>/5 <i class="fas fa-star text-warning"></i> )</span>
-            <span class="mx-1"><%= link_to barbecue_path(b), class: "text-decoration-none text-secondary" do %>
-                  <i class="fas fa-eye"></i><% end %></span>
-            <span class="mx-1"><%= link_to edit_barbecue_path(b), class: "text-decoration-none text-secondary" do %>
-                  <i class="far fa-edit"></i><% end %></span>
-            <span class="mx-1"><%= link_to barbecue_path(b), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none text-danger" do %>
-                  <i class="fas fa-trash"></i><% end %></span>
-          </div>
-        <% end %>
+          <%= link_to barbecue_path(b), class: "text-secondary" do %>
+            <%= render "barbecues/dashboard_card", b: b %>
+          <% end %>
         <% end %>
         <%= link_to '+ Add a barbecue', new_barbecue_path, class: "btn btn-secondary" %>
       </div>
@@ -39,39 +30,11 @@
       <div class="part bookings">
         <h3>My Bookings</h3>
         <% @bookings.each do |booking| %>
-        <% if current_user.id == booking.barbecue.user_id %>
-          <div class="booking">
-          <% if booking.accepted %>
-            <p><%= link_to user_path(booking), style: "color: gray" do %>
-            <%= booking.user.first_name %> <%= booking.user.last_name %>
-            <% end %>
-             will rents your <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %>.</p>
-            <p>From : <%= booking.start_date %></p>
-            <p>To : <%= booking.end_date %></p>
-            <p class="mx-1 text-right text-success"><i class="fas fa-check-circle"></i> You confirmed this booking !</p>
-            <p class="mx-1 text-right"><%= link_to delete_booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class: "text-secondary" do %><i class="fas fa-times"></i> Cancel<% end %></p>
-          <% else %>
-            <p><%= link_to user_path(booking), style: "color: gray" do %><%= booking.user.first_name %> <%= booking.user.last_name %><% end %> wants to rent your <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %>.</p>
-            <p>From : <%= booking.start_date %></p>
-            <p>To : <%= booking.end_date %></p>
-            <span class="mx-1"><%= link_to accept_booking_path(booking), method: :patch, class: "btn btn-success" do %><i class="fas fa-check"></i> Accept<% end %></span>
-            <span class="mx-1"><%= link_to delete_booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-secondary" do %><i class="fas fa-times"></i> Decline<% end %></span>
+          <% if current_user.id == booking.barbecue.user_id %>
+            <%= render "bookings/card", booking: booking %>
+          <% elsif current_user == booking.user %>
+            <%= render "bookings/card_booking", booking: booking %>
           <% end %>
-          </div>
-        <% end %>
-        <% if current_user == booking.user %>
-          <div class="booking">
-            <p>You booked a <%= link_to barbecue_path(booking.barbecue), style: "color: gray" do %><%= booking.barbecue.name %><% end %> to <%= link_to user_path(booking.barbecue.user), style: "color: gray" do %><%= booking.barbecue.user.first_name %> <%= booking.barbecue.user.last_name %><% end %>.</p>
-            <p>From : <%= booking.start_date %></p>
-            <p>To : <%= booking.end_date %></p>
-            <% if booking.accepted %>
-            <p class="mx-1 text-right text-success"><i class="fas fa-check-circle"></i> Accepted by the owner !</p>
-            <% else %>
-            <p class="mx-1 text-right text-warning"><i class="fas fa-hourglass-start"></i> Waiting for a confirmation...</p>
-            <% end %>
-            <p class="mx-1 text-right"><%= link_to delete_booking_path(booking), method: :delete, data: { confirm: "Are you sure?" }, class: "text-secondary" do %><i class="fas fa-times"></i> Cancel<% end %></p>
-          </div>
-        <% end %>
         <% end %>
       </div>
 

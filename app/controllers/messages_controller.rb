@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   def index
     @messages = policy_scope(Message)
     authorize @messages
+    @title = "My Messages"
   end
 
   def new
