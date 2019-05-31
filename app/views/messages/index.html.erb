@@ -1,39 +1,46 @@
-<div class="text-center m-5">
-	<h1>My messages</h1>
-	<% if @messages.size == 0 %>
-		<h2 class="text-secondary m-5">( No messages yet...) </h2>
-	<% end %>
+<div class="d-flex mx-5 my-5 px-5 justify-content-between">
+	<div>
+		<h1>My messages</h1>
+	</div>
+	<div class="d-flex justify-content-center">
+		<%= button_to "Refresh", messages_path, :method => :get, class: "btn btn-success" %>
+	</div>
+	<div>
+		<% if @messages.size == 0 %>
+			<h2 class="text-secondary m-5">( No messages yet...) </h2>
+		<% end %>
+	</div>
 </div>
 
 <div class="container">
 	<% @messages.each do |message| %>
 		<% if message.sender == current_user %>
-		<div class="sent message">
+		<div class="sent message" data-message-id="<%= message.id %>" >
 			<div>
 				<%= cl_image_tag message.receiver.avatar, crop: :fill, class: "avatar" %>
-				<p>At: <strong><%= message.receiver.first_name %> <%= message.receiver.last_name %></strong></p>
+				<p>To: <strong><%= message.receiver.first_name %> <%= message.receiver.last_name %></strong></p>
 				<p><%= message.content %></p>
 			</div>
 			<div>
-				<span><%= link_to delete_message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %><i class="fas fa-trash"></i><% end %></span>
+				<span><%= link_to message_path(message.id), method: :delete, class: "text-danger", remote: true do %><i class="fas fa-trash"></i><% end %></span>
 			</div>
 		</div>
 		<% else %>
 			<% if message.read %>
-				<div class="received message">
+				<div class="received message" data-message-id="<%= message.id %>">
 					<div>
 						<%= cl_image_tag message.sender.avatar, crop: :fill, class: "avatar" %>
 				  	<p>From: <strong><%= message.sender.first_name %> <%= message.sender.last_name %></strong></p>
 				  	<p><%= message.content %></p>
         	</div>
 					<div>
-						<span><%= link_to delete_message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %><i class="fas fa-trash"></i><% end %></span>
+						<span><%= link_to message_path(message.id), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger", remote: true do %><i class="fas fa-trash"></i><% end %></span>
 						<span><%= link_to new_message_path(message.sender) do %><i class="fas fa-reply"></i><% end %></span>
 
 					</div>
 				</div>
 			<% else %>
-				<div class="new received message">
+				<div class="new received message" data-message-id="<%= message.id %>">
 					<div>
 						<%= cl_image_tag message.sender.avatar, crop: :fill, class: "avatar" %>
 				  	<p>From: <strong><%= message.sender.first_name %> <%= message.sender.last_name %></strong></p>
@@ -41,13 +48,12 @@
         	</div>
 					<div>
 						<%= link_to 'mark as read', read_message_path(message), method: :patch, class: "btn btn-outline-primary text-primary" %>
-						<span><%= link_to delete_message_path(message), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger" do %><i class="fas fa-trash"></i><% end %></span>
+						<span><%= link_to message_path(message.id), method: :delete, data: { confirm: "Are you sure?" }, class: "text-danger", remote: true do %><i class="fas fa-trash"></i><% end %></span>
 						<span><%= link_to new_message_path(message.sender) do %><i class="fas fa-reply"></i><% end %></span>
-
 					</div>
 				</div>
 			<% end %>
 		<% end %>
 	<% end %>
 </div>
-      
+	
