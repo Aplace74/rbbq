@@ -50,13 +50,9 @@
 			<div class="col-lg-4 px-4">
 				<h3 class="mb-3 text-center">Reviews</h3>					
 				<ul class="list-unstyled" id="reviews">
-				<% if @barbecue.reviews.count > 0 %>
 					<% @barbecue.reviews.each do |review| %>
 						<%= render 'reviews/show', review: review %>
 					<%end%>
-				<%else%>
-					<p class="text-center"><%= "This barbecue hasn't been reviewed yet" %></p>
-				<%end%>
 				</ul>	
 				<hr>				
 				<% if user_signed_in? %>
