@@ -27,16 +27,7 @@
 					<%= link_to barbecue_path, data: { confirm: 'Are you sure?' },class: "btn btn-danger", method: :delete do %>
 						<i class="fas fa-trash-alt"></i> Delete
 					<% end %>
-				<% end %>
-				<% if @barbecue.user != current_user && @barbecue.user.bookings.count >= 1 %>
-					<%= link_to new_barbecue_review_path(@barbecue), class:"btn btn-success" do %>
-						<i class="fas fa-edit"></i> Add a review
-					<% end %>
-				<%end%>	
-				<% if @barbecue.user != current_user && @barbecue.user.bookings.count == 0 %>
-					<p><a class="btn btn-success disabled" href="#"><i class="fas fa-edit"></i> Add a review</a><br>
-					You must rent this barbecue to review it.</p>
-				<%end%>					
+				<% end %>				
 			</p>
 		</div>
 		<% if @barbecue.user != current_user %>
@@ -57,28 +48,17 @@
 			</div>
 
 			<div class="col-lg-4 px-3">
-				<h3 class="mb-3 text-center">Reviews</h3>
-				<% if @barbecue.reviews.count >= 1 %>
-					<% @barbecue.reviews.each do |r| %>
-					<ul class="list-unstyled">
-						<li class="media bg-light p-3 rounded">
-							<%= cl_image_tag(r.user.avatar, crop: :fill, class: "avatar mr-3") %>
-							<div class="media-body">
-								<h5 class="mt-0"><%= link_to "#{r.user.first_name} #{r.user.last_name}", user_path(r.user.id), class: "text-secondary" %></h5>
-								<% r.rating.times do %>
-									<span class="fas fa-star text-warning"></span>
-								<% end %>
-								<% (5 - r.rating).times do %>
-									<span class="far fa-star text-warning"></span>
-								<% end %><br>
-								<%= r.content %>
-							</div>
-						</li>
-					</ul>
+				<h3 class="mb-3 text-center">Reviews</h3>					
+				<ul class="list-unstyled" id="reviews">
+					<% @barbecue.reviews.each do |review| %>
+						<%= render 'reviews/show', review: review %>
 					<%end%>
-				<%else%>
-					<p class="text-center">This barbecue hasn't been reviewed yet</p>
-				<%end%>
+				</ul>					
+				
+				<h3 class="text-center">Post a review</h3>
+				<div id="review_form">
+				<%= render 'reviews/form', barbecue: @barbecue, review: @review%>
+				</div>
 			</div>
 		</div>
 </div>

@@ -1,0 +1,13 @@
+<li class="media bg-light p-3 rounded" data-review-id="<%= review.id %>">
+    <%= cl_image_tag(review.user.avatar, crop: :fill, class: "avatar mr-3") %>
+    <div class="media-body">
+        <h5 class="mt-0"><%= link_to "#{review.user.first_name} #{review.user.last_name}", user_path(review.user.id), class: "text-secondary" %></h5>
+        <% review.rating.times do %>
+            <span class="fas fa-star text-warning"></span>
+        <% end %>
+        <% (5 - review.rating).times do %>
+            <span class="far fa-star text-warning"></span>
+        <% end %><br>
+        <%= review.content %>
+    </div>
+</li>
