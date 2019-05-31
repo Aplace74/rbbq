@@ -20,12 +20,10 @@
       <div class="part bbqs">
         <h3>My Barbecues</h3>
         <% @user.barbecues.each do |b| %>
+        <%= render 'shared/card_light', barbecue: b %>
         <%= link_to barbecue_path(b), style: "color: gray" do %>
           <div class="bbq my-3">
-            <p class="my-1"><strong><%= b.name %></strong></p>
-            <span>( <%= b.rating %>/5 <i class="fas fa-star text-warning"></i> )</span>
-            <span class="mx-1"><%= link_to barbecue_path(b), class: "text-decoration-none text-secondary" do %>
-                  <i class="fas fa-eye"></i><% end %></span>
+            
             <span class="mx-1"><%= link_to edit_barbecue_path(b), class: "text-decoration-none text-secondary" do %>
                   <i class="far fa-edit"></i><% end %></span>
             <span class="mx-1"><%= link_to barbecue_path(b), method: :delete, data: { confirm: "Are you sure?" }, class: "text-decoration-none text-danger" do %>

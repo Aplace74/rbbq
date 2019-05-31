@@ -7,6 +7,7 @@
       <h2><%= @user.first_name %> <%= @user.last_name %></h1>
         <p><i class="fas fa-phone"></i> <%= @user.phone %></p>
         <p><i class="fas fa-envelope"></i> <%= @user.email %></p>
+        <p><i class="fas fa-comment"></i> <%= @user.reviews.count %></p>
         <div class="text-center"><%= link_to 'Send a Message', new_message_path(@user), class: "btn btn-success" %></div>
       </div>
     </div>

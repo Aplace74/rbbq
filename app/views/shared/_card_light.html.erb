@@ -5,6 +5,7 @@
 		<div class="rating">
 			<%= render 'shared/rating', barbecue: barbecue %>
 		</div>
-		<p>Product description with <strong>relevant info</strong> only.</p>
+		<p class="badge badge-info"><%= barbecue.types %></p>
+			<p><i class="fas fa-user-friends"></i> <%= barbecue.capacity %>
 	</div>
 </div>
