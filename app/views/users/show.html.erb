@@ -8,7 +8,9 @@
         <p><i class="fas fa-phone"></i> <%= @user.phone %></p>
         <p><i class="fas fa-envelope"></i> <%= @user.email %></p>
         <p><i class="fas fa-comment"></i> <%= @user.reviews.count %></p>
-        <div class="text-center"><%= link_to 'Send a Message', new_message_path(@user), class: "btn btn-success" %></div>
+        <% if current_user != @user %>
+          <div class="text-center"><%= link_to 'Send a Message', new_message_path(@user), class: "btn btn-success" %></div>
+        <% end %>
       </div>
     </div>
 
