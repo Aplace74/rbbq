@@ -27,6 +27,12 @@
   }
 }
 
+@media (min-width: 900px) {
+  .profile {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
 .bbqs {
   .bbq {
     padding: 15px;
