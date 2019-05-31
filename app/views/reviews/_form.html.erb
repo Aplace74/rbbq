@@ -1,0 +1,5 @@
+<%= simple_form_for([ barbecue, review ], remote: true) do |f| %>
+  <%= f.input :content, as: :text %>
+  <%= f.input :rating, collection: Review::STARS %>
+  <%= f.button :submit, class: "btn btn-success" %>
+<% end %>
