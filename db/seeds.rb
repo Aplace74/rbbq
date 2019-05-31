@@ -1,7 +1,10 @@
-require 'faker'
+require 'date'
 
 puts "clearing databases ..."
+Review.destroy_all
+Booking.destroy_all
 Barbecue.destroy_all
+Message.destroy_all
 User.destroy_all
 
 puts "Cleaning OK, creating users ..."
@@ -15,6 +18,7 @@ chris = User.create!(
 )
 chris.remote_avatar_url = "https://ca.slack-edge.com/T02NE0241-UHJNRSJ2X-8033519bd289-48"
 chris.save
+chris[:id]
 
 max = User.create!(
     first_name: "Maxime",
@@ -59,7 +63,7 @@ bbq1 = Barbecue.create!(
     capacity: "12",
     types: "coal",
     rating: [0, 1, 2, 3, 4, 5].sample,
-    user: users.sample
+    user: chris
 )
 bbq1.remote_pictures_url = "https://www.esprit-barbecue.fr/5446-thickbox_default/barbecue-charbon-mendy-alde-le-marquier.jpg"
 bbq1.save
@@ -73,7 +77,7 @@ bbq2 = Barbecue.create!(
     capacity: "8",
     types: "coal",
     rating: [0, 1, 2, 3, 4, 5].sample,
-    user: users.sample
+    user: aym
 )
 bbq2.remote_pictures_url = "https://www.esprit-barbecue.fr/96-thickbox_default/barbecue-weber-compact-kettle-47-cm.jpg"
 bbq2.save
@@ -87,7 +91,7 @@ bbq3 = Barbecue.create!(
     capacity: "12",
     types: "gas",
     rating: [0, 1, 2, 3, 4, 5].sample,
-    user: users.sample
+    user: anto
 )
 bbq3.remote_pictures_url = "https://www.esprit-barbecue.fr/1751-thickbox_default/barbecue-weber-gaz-q3200.jpg"
 bbq3.save
@@ -101,7 +105,7 @@ bbq4 = Barbecue.create!(
     capacity: "12",
     types: "electric",
     rating: [0, 1, 2, 3, 4, 5].sample,
-    user: users.sample
+    user: max
 )
 bbq4.remote_pictures_url = "https://www.esprit-barbecue.fr/6009-thickbox_default/gril-electrique-mythic-double-krampouz.jpg"
 bbq4.save
@@ -115,7 +119,7 @@ bbq5 = Barbecue.create!(
     capacity: "6",
     types: "gas",
     rating: [0, 1, 2, 3, 4, 5].sample,
-    user: users.sample
+    user: chris
 )
 bbq5.remote_pictures_url = "https://www.esprit-barbecue.fr/8097-thickbox_default/plancha-gaz-oceane-50-eno.jpg"
 bbq5.save
@@ -129,7 +133,7 @@ bbq6 = Barbecue.create!(
     capacity: "6",
     types: "electric",
     rating: [0, 1, 2, 3, 4, 5].sample,
-    user: users.sample
+    user: aym
 )
 bbq6.remote_pictures_url = "https://www.esprit-barbecue.fr/5761-thickbox_default/plancha-elec-design-1800w-krampouz.jpg"
 bbq6.save
@@ -143,9 +147,57 @@ bbq7 = Barbecue.create!(
     capacity: "8",
     types: "coal",
     rating: [0, 1, 2, 3, 4, 5].sample,
-    user: users.sample
+    user: anto
 )
 bbq7.remote_pictures_url = "https://www.esprit-barbecue.fr/7456-thickbox_default/barbecue-tonino-1-charbon-acier.jpg"
 bbq7.save
 
+puts "creating bookings"
+
+start_date1 = Date.new(2019, 12, 12)
+end_date1 = Date.new(2019, 12, 14)
+booking1 = Booking.create!(
+    start_date: start_date1,
+    end_date: end_date1,
+    barbecue_id: bbq1[:id],
+    user_id: anto[:id],
+    accepted: true
+)
+
+start_date2 = Date.new(2019, 6, 12)
+end_date2 = Date.new(2019, 6, 14)
+booking2 = Booking.create!(
+    start_date: start_date2,
+    end_date: end_date2,
+    barbecue_id: bbq7[:id],
+    user_id: chris[:id],
+    accepted: true
+)
+
+start_date3 = Date.new(2019, 6, 12)
+end_date3 = Date.new(2019, 6, 15)
+booking3 = Booking.create!(
+    start_date: start_date3,
+    end_date: end_date3,
+    barbecue_id: bbq6[:id],
+    user_id: max[:id]
+)
+
+puts "creating reviews"
+
+review1 = Review.create!(
+    content: "Excellent bbq et proprio très sympa. Je recommande !",
+    rating: 5,
+    user_id: anto[:id],
+    barbecue_id: bbq1[:id]
+)
+
+review2 = Review.create!(
+    content: "Barbecue fidèle à la description, mais proprio pas fiable. Il était absent quand j'ai voulu rapporter le bbq et j'ai dû y retourner 2 fois.",
+    rating: 3,
+    user_id: chris[:id],
+    barbecue_id: bbq7[:id]
+)
+
 puts "seed finished !"
+
