@@ -1,0 +1,30 @@
+<div class="booking" data-booking-id="<%= booking.id %>">
+  <p>
+    <%= link_to user_path(booking.user), class: "text-secondary" do %>
+      <%= booking.user.first_name %> <%= booking.user.last_name %>
+    <% end %>
+    will rents your 
+    <%= link_to barbecue_path(booking.barbecue), class: "text-secondary" do %>
+      <%= booking.barbecue.name %>
+    <% end %>.
+  </p>
+  <p>
+    From : <%= booking.start_date %>
+  </p>
+  <p>
+    To : <%= booking.end_date %>
+  </p>
+  <% if booking.accepted %>
+    <p class="mx-1 text-right text-success">
+      <i class="fas fa-check-circle"></i> You confirmed this booking !
+    </p>
+    <p class="mx-1 text-right">
+      <%= link_to delete_booking_path(booking), remote: true, method: :delete, data: { confirm: "Are you sure?" }, class: "text-secondary" do %>
+        <i class="fas fa-times"></i> Cancel
+      <% end %>
+    </p>
+  <% else %>
+    <span class="mx-1"><%= link_to accept_booking_path(booking), remote: true, method: :patch, class: "btn btn-success" do %><i class="fas fa-check"></i> Accept<% end %></span>
+    <span class="mx-1"><%= link_to delete_booking_path(booking), remote: true, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-secondary" do %><i class="fas fa-times"></i> Decline<% end %></span>
+  <% end %>
+</div>

@@ -32,14 +32,12 @@ class BookingsController < ApplicationController
     else
       render :edit
     end
-
   end
 
   def destroy
     @booking = Booking.find(params[:id])
     authorize @booking
     @booking.destroy
-    redirect_to dashboard_users_path(@user)
   end
 
   def accept
@@ -47,7 +45,17 @@ class BookingsController < ApplicationController
     @booking.accepted = true
     authorize @booking
     @booking.save
-    redirect_to dashboard_users_path(@user)
+    if @booking.save
+      respond_to do |format|
+        format.html { redirect_to dashboard_users_path }
+        format.js
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to dashboard_users_path }
+        format.js
+      end
+    end
   end
 
   private
