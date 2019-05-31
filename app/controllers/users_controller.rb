@@ -5,7 +5,7 @@ class UsersController < ApplicationController
     @user = current_user
     authorize @user
     @bookings = Booking.where(@user.id == :user_id)
-    @title = "#{@user.first_name} #{@user.last_name} Dashboard"
+    @title = "Dashboard"
   end
 
   def show
