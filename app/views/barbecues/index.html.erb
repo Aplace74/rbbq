@@ -1,10 +1,9 @@
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.4)), url(https://res.cloudinary.com/dwptvy074/image/upload/v1558968003/barbecue-cover_ml41ba.jpg);">
   <%= render 'shared/banner_index' %>
 </div>
-<div class="container">
-  <div class="cards">
-    <% @barbecues.each do |barbecue| %>
-      <%= render 'shared/card', barbecue: barbecue %>
-    <% end %>
-  </div>
+
+<div class="cards">
+  <% @barbecues.each do |barbecue| %>
+    <%= render 'shared/card', barbecue: barbecue %>
+  <% end %>
 </div>
