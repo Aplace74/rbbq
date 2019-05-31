@@ -1,11 +1,11 @@
-<div class="card-light">
-	<img src="<%= cl_image_path barbecue.pictures, height: 300, width: 400 %>">
-	<div class="card-light-infos">
-		<h2><%= link_to barbecue.name, barbecue_path(barbecue) %></h2>
-		<div class="rating">
-			<%= render 'shared/rating', barbecue: barbecue %>
-		</div>
-		<p class="badge badge-info"><%= barbecue.types %></p>
+<%= link_to barbecue_path(barbecue), class: "card-light" do %>
+		<img src="<%= cl_image_path barbecue.pictures, height: 300, width: 400 %>">
+		<div class="card-light-infos">
+			<h2><%= barbecue.name %></h2>
+			<div class="rating">
+				<%= render 'shared/rating', barbecue: barbecue %>
+			</div>
+			<p class="badge badge-info"><%= barbecue.types %></p>
 			<p><i class="fas fa-user-friends"></i> <%= barbecue.capacity %>
 	</div>
-</div>
+<% end %>
