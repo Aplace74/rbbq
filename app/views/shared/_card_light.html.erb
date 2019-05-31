@@ -1,0 +1,10 @@
+<div class="card-light">
+	<img src="<%= cl_image_path barbecue.pictures, height: 300, width: 400 %>">
+	<div class="card-light-infos">
+		<h2><%= link_to barbecue.name, barbecue_path(barbecue) %></h2>
+		<div class="rating">
+			<%= render 'shared/rating', barbecue: barbecue %>
+		</div>
+		<p>Product description with <strong>relevant info</strong> only.</p>
+	</div>
+</div>
