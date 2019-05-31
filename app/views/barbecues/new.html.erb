@@ -5,7 +5,7 @@
 		<%= f.input :description, as: :text %>
 		<%= f.input :address %>
 		<%= f.input :model %>
-		<%= f.input :price, as: :float %>
+		<%= f.input :price, as: :float, label: 'Price per day' %>
 		<%= f.input :types, collection: Barbecue::TYPES %>
 		<%= f.input :capacity, as: :integer %>
 		<%= f.input :pictures %>
