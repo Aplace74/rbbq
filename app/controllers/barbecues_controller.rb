@@ -60,7 +60,7 @@ class BarbecuesController < ApplicationController
   end
 
   def search
-    @title = "Search: '#{params[:query]}'"
+    @title = "Results for: \"#{params[:query].capitalize}\""
     @barbecues = policy_scope(Barbecue).near(params[:query], 10)
     authorize @barbecues
     if @barbecues.empty?
